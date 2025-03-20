@@ -1,1 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-rajdhani: "Rajdhani", sans-serif;
+}
+
+body {
+  font-family: var(--font-rajdhani), sans-serif;
+}
+
+/* TypeWriter effect */
+
+.typewriter-container {
+  display: flex;
+  align-items: end;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s linear forwards;
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 0.75s step-end infinite;
+  margin-left: 5px;
+}
+
+@keyframes typing {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Underline effect */
+.underline-button {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.underline-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: white;
+  transition: width 0.3s;
+  transform-origin: left;
+}
+
+.underline-button:hover::after {
+  width: 100%;
+}
+
+.underline-button:hover {
+  color: white;
+}
+
+.fade-in-text {
+  opacity: 0;
+  transition: opacity 1s;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
