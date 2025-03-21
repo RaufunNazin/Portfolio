@@ -54,7 +54,6 @@ body {
   background: none;
   border: none;
   color: white;
-  font-size: 1rem;
   cursor: pointer;
   padding: 5px;
   transition: color 0.3s;
@@ -85,10 +84,36 @@ body {
   transition: opacity 1s;
   animation: fadeIn 1s ease forwards;
   animation-delay: 1.5s;
+  transition: all 0.2s;
 }
 
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
+}
+
+/* Fade In From Bottom */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Initial State (Hidden) */
+.fade-in-up {
+  opacity: 0; /* Hidden by default */
+  transform: translateY(200px);
+  transition: opacity 0.5s 0.5s, transform 1s 1s;
+}
+
+/* Triggered Animation */
+.fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0);
 }
