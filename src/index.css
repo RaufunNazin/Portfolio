@@ -108,7 +108,7 @@ body {
 /* Initial State (Hidden) */
 .fade-in-up {
   opacity: 0; /* Hidden by default */
-  transform: translateY(200px);
+  transform: translateY(125px);
   transition: opacity 0.5s 0.5s, transform 1s 1s;
 }
 

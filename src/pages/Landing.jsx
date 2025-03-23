@@ -1,14 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Landing = () => {
-  const [background, setBackground] = useState(20);
-  const parallaxRef = useRef(null);
-
   const projects = [
     {
       src: "/snapgenix.png",
@@ -176,6 +171,223 @@ const Landing = () => {
                 </div>
               ))}
             </Slider>
+          </div>
+        </div>
+
+        {/* Skills section */}
+        <div className="flex flex-col gap-5 my-48 items-center justify-center">
+          <div className="text-white text-[52px] underline-button">
+            What Sets Me Apart
+          </div>
+
+          {/* Bento Box */}
+          <div className="w-full grid grid-cols-6 grid-rows-3 gap-5 rounded-md">
+            <div className="rounded-md p-5 bg-green-400/80 hover:bg-green-400 transition-all duration-200 ring-1 ring-black/20 flex flex-col justify-center items-center">
+              <div className="text-[40px]">4+</div>
+              <div className="text-[20px]">Years of experience</div>
+            </div>
+            <div className="rounded-md p-5 bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col items-center justify-around gap-5">
+                <img
+                  src="/gear.png"
+                  alt="gear"
+                  className="w-10 h-10 animate-spin"
+                />
+                <div className="text-white text-[20px]">Problem Solver</div>
+              </div>
+            </div>
+
+            <div className="col-span-2 rounded-md p-5 bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center text-white">
+              <img src="/shaped.svg" alt="shaped" className="h-6" />
+              <div className="text-[32px]">Junior Frontend Engineer</div>
+              <div className="text-[12px]">April 2023 - March 2024</div>
+            </div>
+
+            <div className="col-span-1 row-span-3 rounded-md p-5 bg-white/80 hover:bg-white transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center">
+              <div>Specialized Excellence</div>
+              <div className="grid grid-cols-2 gap-5">
+                <img
+                  src="/expressjs.png"
+                  alt="expressjs"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/tailwind.png"
+                  alt="tailwind"
+                  className="h-7 mx-auto my-auto"
+                />
+                <img
+                  src="/nextjs.png"
+                  alt="next"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/git.png"
+                  alt="git"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/ts.png"
+                  alt="typescript"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/nodejs.png"
+                  alt="node"
+                  className="h-6 mx-auto my-auto"
+                />
+                <img
+                  src="/fastapi.svg"
+                  alt="fastapi"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/react.png"
+                  alt="react"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/python.svg"
+                  alt="python"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/postgres.png"
+                  alt="postgres"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/js.png"
+                  alt="javascript"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/django.svg"
+                  alt="django"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/mongodb.png"
+                  alt="mongodb"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/mysql.svg"
+                  alt="mysql"
+                  className="h-12 mx-auto my-auto"
+                />
+              </div>
+            </div>
+            <div className="rounded-md p-5 bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col items-center justify-around gap-5">
+                <img
+                  src="/idea.png"
+                  alt="idea"
+                  className="w-10 h-10 animate-pulse"
+                />
+                <div className="text-white text-[20px]">Critical Thinker</div>
+              </div>
+            </div>
+            <div className="rounded-md p-5 bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col gap-5 items-center justify-around">
+                <img
+                  src="/detail.png"
+                  alt="detail"
+                  className="w-10 h-10 animate-pulse"
+                />
+                <div className="text-white text-[20px]">Detail-Oriented</div>
+              </div>
+            </div>
+            <div className="col-span-2 rounded-md p-5 bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col items-center justify-around">
+                <div className="flex gap-2 items-center">
+                  <img src="/medal.png" alt="medal" className="h-7" />
+                  <div className="text-[24px]">Finalist</div>
+                </div>
+                <div className="text-[24px]">ITVerse 2023</div>
+                <div className="text-[12px]">IIT, DU</div>
+              </div>
+            </div>
+            <div className="rounded-md p-5 bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col gap-5 items-center justify-around">
+                <img
+                  src="/hourglass.png"
+                  alt="hourglass"
+                  className="w-8 h-8 animate-spin"
+                />
+                <div className="text-white text-[20px]">Deadline-Driven</div>
+              </div>
+            </div>
+            <div className="col-span-1 row-span-2 rounded-md p-5 bg-white/80 hover:bg-white transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center">
+              <div>Growing Competence</div>
+              <div className="grid grid-cols-2 gap-5">
+                <img
+                  src="/docker.webp"
+                  alt="docker"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/cpp.png"
+                  alt="cpp"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/java.webp"
+                  alt="java"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/oracle.png"
+                  alt="oracle"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/sass.png"
+                  alt="sass"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/firebase.png"
+                  alt="firebase"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/figma.png"
+                  alt="figma"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/illustrator.png"
+                  alt="illustrator"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/photoshop.png"
+                  alt="photoshop"
+                  className="h-10 mx-auto my-auto"
+                />
+                <img
+                  src="/kubernetes.png"
+                  alt="kubernetes"
+                  className="h-10 mx-auto my-auto"
+                />
+              </div>
+            </div>
+            <div className="col-span-2 rounded-md p-5 bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
+              <div className="flex flex-col items-center justify-around">
+                <div className="flex gap-2 items-center">
+                  <img src="/medal.png" alt="medal" className="h-7" />
+                  <div className="text-[24px]">Finalist</div>
+                </div>
+                <div className="text-[24px]">Code Samurai 2024</div>
+                <div className="text-[12px]">CSE, DU</div>
+              </div>
+            </div>
+            <div className="col-span-2 rounded-md p-5 bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center text-white">
+              <img src="/zoopsign.svg" alt="shaped" className="h-6" />
+              <div className="text-[32px]">Full Stack Developer</div>
+              <div className="text-[12px]">June 2022 - March 2023</div>
+            </div>
           </div>
         </div>
       </div>
