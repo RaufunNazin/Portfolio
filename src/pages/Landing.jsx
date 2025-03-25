@@ -10,6 +10,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import SnakeGame from "../components/SnakeGame";
 
 const Landing = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -215,8 +216,11 @@ const Landing = () => {
             Full Stack Developer |<br className="block md:hidden" /> UI/UX &
             Graphic Designer
           </div>
-          <button className="px-3 md:px-5 py-1 md:py-3 rounded-md border border-white text-white hover:bg-white hover:text-gray-800 cursor-pointer w-fit fade-in-text -mt-3 md:-mt-0" onClick={() => scrollToSection("contact-section")}>
-            Contact Me
+          <button
+            className="px-3 md:px-5 py-1 md:py-3 rounded-md border border-white text-white hover:bg-white hover:text-gray-800 cursor-pointer w-fit fade-in-text -mt-3 md:-mt-0"
+            onClick={() => scrollToSection("contact-section")}
+          >
+            Get in Touch
           </button>
         </div>
 
@@ -529,6 +533,14 @@ const Landing = () => {
               <div className="text-[12px]">June 2022 - March 2023</div>
             </div>
           </div>
+        </div>
+
+        {/* Snake Game */}
+        <div className="hidden md:flex flex-col gap-5 my-24 md:my-52 items-center justify-center">
+          <div className="text-white text-[32px] md:text-[52px] underline-button">
+            Bored? Play a Game!
+          </div>
+          <SnakeGame />
         </div>
 
         {/* Contact section */}
