@@ -155,7 +155,7 @@ const SnakeGame = () => {
             snake<span className="font-bold">overflow</span>
           </div>
           <div className="text-yellow-400 text-sm text-end -mt-2">
-            {"A snake game :)"}
+            {"a snaking game :)"}
           </div>
           <button
             className="bg-green-500 text-white px-5 py-2 rounded-lg text-lg cursor-pointer hover:bg-green-600 transition-all duration-200 mt-5"
@@ -171,15 +171,15 @@ const SnakeGame = () => {
       {gameOver && (
         <div className="absolute flex flex-col items-center text-white p-5 rounded-lg">
           <div className="text-white text-3xl text-center">
-            💀 Snake.exe has stopped working 💀
+            💀 snake.exe has stopped working 💀
           </div>
           <div className="text-gray-300 text-sm text-center">
-            Was it the snake or the programmer who made the mistake? 🤔
+            Was it the snake or the player?
           </div>
           <div className="text-yellow-400 mt-5">High Score: {highScore}</div>
           <div className="text-white">Your Score: {score}</div>
           <button
-            className="bg-white text-gray-800 px-5 py-2 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
+            className="bg-white text-gray-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
             onClick={() => {
               setSnake(initialSnake);
               setFood(randomFoodPosition());
@@ -189,6 +189,16 @@ const SnakeGame = () => {
             }}
           >
             Retry?
+          </button>
+          <button
+            className="text-sm text-gray-300 cursor-pointer underline-button"
+            onClick={() => {
+              setStarted(false);
+              setGameOver(false);
+              setSnake(initialSnake);
+            }}
+          >
+            No, thanks. I'm done with this game.
           </button>
         </div>
       )}

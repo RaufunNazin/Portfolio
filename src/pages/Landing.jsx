@@ -77,8 +77,8 @@ const Landing = () => {
         { message: body },
         "MFnvQ0EM3D9sI6-qZ"
       )
-      .then(() => toast.success("Email sent!"))
-      .catch(() => toast.error("Failed to send email."))
+      .then(() => toast.success("I've received your email!"))
+      .catch(() => toast.error("Failed to send email!"))
       .finally(() => {
         setLoading(false);
         setBody("");
@@ -136,21 +136,6 @@ const Landing = () => {
         <div className="flex w-full justify-between items-center py-5 text-white">
           <div>
             <img src="/signature.png" alt="signature" className="h-8" />
-          </div>
-          <div className="md:flex gap-5 hidden">
-            {/* <button className="cursor-pointer underline-button">About</button> */}
-            <button
-              className="cursor-pointer underline-button"
-              onClick={() => scrollToSection("projects-section")}
-            >
-              Projects
-            </button>
-            <button
-              className="cursor-pointer underline-button"
-              onClick={() => scrollToSection("contact-section")}
-            >
-              Contact
-            </button>
           </div>
           <button
             className="cursor-pointer border border-white hover:bg-white hover:text-gray-800 px-3 py-1 rounded-md duration-200 transition-all"
@@ -212,9 +197,8 @@ const Landing = () => {
             </span>
             <span className="cursor text-[48px] md:text-[96px]">|</span>
           </div>
-          <div className="text-white text-[24px] md:text-[40px] fade-in-text">
-            Full Stack Developer |<br className="block md:hidden" /> UI/UX &
-            Graphic Designer
+          <div className="text-white text-[24px] md:text-[40px] fade-in-text underline-button w-fit">
+            Not Just Another Full Stack Developer
           </div>
           <button
             className="px-3 md:px-5 py-1 md:py-3 rounded-md border border-white text-white hover:bg-white hover:text-gray-800 cursor-pointer w-fit fade-in-text -mt-3 md:-mt-0"
@@ -347,8 +331,8 @@ const Landing = () => {
 
             <div className="md:col-span-2 rounded-md p-5 bg-blue-400 md:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center text-white">
               <img src="/shaped.svg" alt="shaped" className="h-6" />
-              <div className="text-[32px]">Junior Frontend Engineer</div>
-              <div className="text-[12px]">April 2023 - March 2024</div>
+              <div className="text-[32px]">Software Engineer</div>
+              <div className="text-[16px]">April 2023 - March 2024</div>
             </div>
 
             <div className="col-span-1 row-span-3 rounded-md p-5 bg-white md:bg-white/80 hover:bg-white transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center gap-3">
@@ -452,7 +436,7 @@ const Landing = () => {
                 <div className="text-[24px]">Finalist</div>
               </div>
               <div className="text-[32px]">ITVerse 2023</div>
-              <div className="text-[12px]">IIT, DU</div>
+              <div className="text-[16px]">IIT, DU</div>
             </div>
             <div className="rounded-md p-5 bg-purple-400 md:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-center">
               <div className="flex flex-col gap-5 items-center justify-around">
@@ -525,12 +509,12 @@ const Landing = () => {
                 <div className="text-[24px]">Finalist</div>
               </div>
               <div className="text-[32px]">Code Samurai 2024</div>
-              <div className="text-[12px]">CSE, DU</div>
+              <div className="text-[16px]">CSE, DU</div>
             </div>
             <div className="md:col-span-2 rounded-md p-5 bg-blue-400 md:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 shadow-lg ring-1 ring-black/20 flex flex-col justify-around items-center text-white">
               <img src="/zoopsign.svg" alt="shaped" className="h-6" />
               <div className="text-[32px]">Full Stack Developer</div>
-              <div className="text-[12px]">June 2022 - March 2023</div>
+              <div className="text-[16px]">June 2022 - March 2023</div>
             </div>
           </div>
         </div>
@@ -538,7 +522,7 @@ const Landing = () => {
         {/* Snake Game */}
         <div className="hidden md:flex flex-col gap-5 my-24 md:my-52 items-center justify-center">
           <div className="text-white text-[32px] md:text-[52px] underline-button">
-            Bored? Play a Game!
+            Bored? Try This Mini Game!
           </div>
           <SnakeGame />
         </div>
@@ -549,7 +533,7 @@ const Landing = () => {
           id="contact-section"
         >
           <div className="text-white text-[32px] md:text-[52px] underline-button">
-            Let's Connect & Create
+            Get in Touch
           </div>
           <div className="flex flex-col md:flex-row justify-around w-full items-center gap-10">
             <div className="flex flex-col gap-5 w-full">
@@ -608,7 +592,7 @@ const Landing = () => {
               </div>
             </div>
             <div className="flex flex-col items-start gap-2 w-full">
-              <div className="text-white">Send me a message</div>
+              <div className="text-white">Have something to say?</div>
               <textarea
                 placeholder="Greetings, human! I'm interested in whatever magic you're selling."
                 value={body}
