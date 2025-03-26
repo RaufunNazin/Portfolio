@@ -191,7 +191,7 @@ const Landing = () => {
           <div className="font-bold text-white typewriter-container -mb-8">
             <span className="typewriter flex">
               <div className="text-[16px] md:text-[24px]">Hi there! I am</div>
-              <span className="text-blue-500 text-[48px] md:text-[96px] -ml-1">
+              <span className="text-blue-500 text-[40px] md:text-[96px] -ml-1">
                 Raufun Nazin Srizon
               </span>
             </span>
