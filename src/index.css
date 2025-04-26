@@ -1,88 +1,93 @@
-@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 :root {
-  --font-rajdhani: "Rajdhani", sans-serif;
+  --font-zain: "Zain", sans-serif;
 }
 
 body {
-  font-family: var(--font-rajdhani), sans-serif;
-}
-
-/* TypeWriter effect */
-
-.typewriter-container {
-  display: flex;
-  align-items: end;
-}
-
-.typewriter {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 2s linear forwards;
-}
-
-.cursor {
-  display: inline-block;
-  animation: blink 0.75s step-end infinite;
-  margin-left: 5px;
-}
-
-@keyframes typing {
-  from {
-    max-width: 0;
-  }
-  to {
-    max-width: 100%;
-  }
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+  font-family: var(--font-zain), sans-serif;
 }
 
 /* Underline effect */
-.underline-button {
+.underline-button-light {
   position: relative;
   background: none;
   border: none;
-  color: white;
-  cursor: pointer;
+  color: #1e2939;
   transition: color 0.3s;
 }
 
-.underline-button::after {
+.underline-button-light::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
   height: 2px;
   width: 0%;
-  background-color: white;
+  background-color: #1e2939;
   transition: width 0.3s;
   transform-origin: left;
 }
 
-.underline-button:hover::after {
+.underline-button-light:hover::after {
   width: 100%;
 }
 
-.underline-button:hover {
-  color: white;
+.underline-button-dark {
+  position: relative;
+  background: none;
+  border: none;
+  color: #efefed;
+  transition: color 0.3s;
+}
+
+.underline-button-dark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #efefed;
+  transition: width 0.3s;
+  transform-origin: left;
+}
+
+.underline-button-dark:hover::after {
+  width: 100%;
+}
+
+/* Underline effect */
+.underline-button-2 {
+  position: relative;
+  background: none;
+  border: none;
+  color: #efefed;
+  transition: color 0.3s;
+}
+
+.underline-button-2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #efefed;
+  transition: width 0.3s;
+  transform-origin: left;
+}
+
+.underline-button-2:hover::after {
+  width: 100%;
 }
 
 .fade-in-text {
   opacity: 0;
   transition: opacity 1s;
   animation: fadeIn 1s ease forwards;
-  animation-delay: 1.5s;
+  animation-delay: 0.5s;
   transition: all 0.2s;
 }
 

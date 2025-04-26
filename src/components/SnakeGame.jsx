@@ -123,11 +123,11 @@ const SnakeGame = () => {
     <div className="relative flex items-center justify-center">
       {
         <div
-          className={`relative grid grid-cols-40 border-2 rounded-md border-white ${
+          className={`relative grid grid-cols-40 rounded-md ${
             !started
-              ? "bg-green-400/10 backdrop-blur-xl"
+              ? "bg-gray-800/80 backdrop-blur-xl"
               : gameOver
-              ? "bg-red-500/20 backdrop-blur-xl"
+              ? "bg-red-800/80 backdrop-blur-xl"
               : "bg-gray-800"
           }`}
         >
@@ -151,7 +151,7 @@ const SnakeGame = () => {
       }
       {!started && !gameOver && (
         <div className="absolute flex flex-col justify-center">
-          <div className="text-white text-3xl text-center">
+          <div className="text-[#efefed] text-3xl text-center font-light">
             snake<span className="font-bold">overflow</span>
           </div>
           <div className="text-yellow-400 text-sm text-end -mt-2">
@@ -163,23 +163,23 @@ const SnakeGame = () => {
           >
             Play
           </button>
-          <div className="text-gray-300 text-sm text-center">
+          <div className="text-[#efefed] text-sm text-center">
             Use Arrow Keys or WASD to Move
           </div>
         </div>
       )}
       {gameOver && (
-        <div className="absolute flex flex-col items-center text-white p-5 rounded-lg">
-          <div className="text-white text-3xl text-center">
+        <div className="absolute flex flex-col items-center text-[#efefed] p-5 rounded-lg">
+          <div className="text-[#efefed] text-3xl text-center">
             💀 snake.exe has stopped working 💀
           </div>
           <div className="text-gray-300 text-sm text-center">
             Was it the snake or the player?
           </div>
           <div className="text-yellow-400 mt-5">High Score: {highScore}</div>
-          <div className="text-white">Your Score: {score}</div>
+          <div className="text-[#efefed]">Your Score: {score}</div>
           <button
-            className="bg-white text-gray-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
+            className="bg-[#efefed] text-gray-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
             onClick={() => {
               setSnake(initialSnake);
               setFood(randomFoodPosition());
@@ -191,7 +191,7 @@ const SnakeGame = () => {
             Retry?
           </button>
           <button
-            className="text-sm text-gray-300 cursor-pointer underline-button"
+            className="text-sm cursor-pointer underline-button-2"
             onClick={() => {
               setStarted(false);
               setGameOver(false);

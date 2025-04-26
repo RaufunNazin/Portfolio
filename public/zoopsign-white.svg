@@ -41,7 +41,7 @@
 		.s8 { fill: url(#g6) } 
 	</style>
 	<filter id="f0">
-		<feFlood flood-color="#1e2939" flood-opacity="1" />
+		<feFlood flood-color="#efefed" flood-opacity="1" />
 		<feBlend mode="normal" in2="SourceGraphic"/>
 		<feComposite in2="SourceAlpha" operator="in" />
 	</filter>
