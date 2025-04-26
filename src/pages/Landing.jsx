@@ -676,8 +676,8 @@ const Landing = () => {
                   <div className="flex gap-3 items-center">
                     <div className="grayscale">
                       <img
-                        src={darkMode ? "address-white.png" : "/address.png"}
-                        alt="address"
+                        src={darkMode ? "location-white.png" : "/location.png"}
+                        alt="location"
                         className="h-8 md:h-10"
                       />
                     </div>
