@@ -14,8 +14,7 @@ import SnakeGame from "../components/SnakeGame";
 import { FaMoon, FaSun } from "react-icons/fa";
 
 const Landing = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState("I have an awesome idea about ");
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -51,21 +50,6 @@ const Landing = () => {
         "An agro-farm company focused on producing and delivering fresh farm products directly to consumers.",
     },
   ];
-
-  var carouselSettings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: isMobile ? true : false,
-    dots: isMobile ? true : false,
-    centerMode: isMobile ? false : true,
-    draggable: true,
-    pauseOnHover: false,
-  };
 
   const sendEmail = () => {
     if (!body) {
@@ -110,21 +94,6 @@ const Landing = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setIsMobile(true);
-      } else {
-        setIsMobile(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
     const projectSection = document.getElementById("slider-section");
     if (!projectSection) return;
 
@@ -152,8 +121,8 @@ const Landing = () => {
   const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
   const inputBorderClass = darkMode
-    ? "border-gray-200 md:border-gray-700"
-    : "border-gray-800 md:border-[#efefed]";
+    ? "bg-transparent border-b border-gray-200"
+    : "bg-[#efefed]";
   const contactBgClass = darkMode ? "bg-gray-800" : "md:bg-white";
   const underlineButtonClass = darkMode
     ? "underline-button-dark"
@@ -278,7 +247,7 @@ const Landing = () => {
               <div
                 className={`${underlineButtonClass} text-[20px] md:text-[32px] fade-in-text underline-button w-fit text-center md:text-left`}
               >
-                Full Stack Software Engineer
+                Software Engineer · Full Stack
               </div>
               <button
                 className={`px-5 md:px-8 py-2 md:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 md:-mt-0`}
@@ -304,14 +273,14 @@ const Landing = () => {
               <div className="flex flex-col items-center gap-10 w-full">
                 <div className="grid grid-cols-2 gap-5 items-center md:flex w-full md:justify-between md:items-center grayscale">
                   <img
-                    src={darkMode ? "genesys-white.svg" : "/genesys.svg"}
-                    alt="Genesys Softwares"
-                    className="h-7 md:h-9 mx-auto"
+                    src={darkMode ? "maestro-white.png" : "/maestro.png"}
+                    alt="Maestro Solutions"
+                    className="h-5 md:h-7 mx-auto"
                   />
                   <img
                     src={darkMode ? "amicsoft-white.png" : "/amicsoft.png"}
                     alt="Amicsoft"
-                    className="h-5 md:h-7 mx-auto"
+                    className="h-5 md:h-6 mx-auto"
                   />
                   <img
                     src={darkMode ? "shaped-white.svg" : "/shaped.svg"}
@@ -339,28 +308,36 @@ const Landing = () => {
           >
             What I've Built So Far
           </div>
-          <div className="w-full md:w-4/5 fade-in-up" id="slider-section">
-            <Slider {...carouselSettings}>
-              {projects.map((project, index) => (
-                <div key={index} className="px-2 md:px-5">
-                  <div className="flex flex-col justify-start gap-3">
-                    <img
-                      src={project.src}
-                      alt={project.title}
-                      className="w-full h-full object-cover rounded-md"
-                    />
-                    <div className={`${textClass} text-[20px] md:text-[24px]`}>
-                      {project.title}
-                    </div>
-                    <div
-                      className={`${textClass} text-[14px] md:text-[16px] -mt-3`}
-                    >
-                      {project.description}
-                    </div>
+          <div
+            className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 fade-in-up"
+            id="slider-section"
+          >
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className={`pb-5 md:pb-8 ${
+                  project.title === "Snapgenix" ? "md:col-span-2" : ""
+                }`}
+              >
+                <div className="flex flex-col justify-start gap-3">
+                  <img
+                    src={project.src}
+                    alt={project.title}
+                    className="w-full h-full object-cover rounded-md"
+                  />
+                  <div
+                    className={`${textClass} text-[20px] md:text-[24px] underline-button`}
+                  >
+                    {project.title}
+                  </div>
+                  <div
+                    className={`${textClass} text-[14px] md:text-[16px] -mt-3`}
+                  >
+                    {project.description}
                   </div>
                 </div>
-              ))}
-            </Slider>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -598,7 +575,7 @@ const Landing = () => {
           <div
             className={`${underlineButtonClass} text-[20px] md:text-[32px] underline-button`}
           >
-            Bored? Try This Mini Game!
+            Bored? Try This Nostalgia!
           </div>
           <SnakeGame />
         </div>
@@ -676,8 +653,8 @@ const Landing = () => {
                   <div className="flex gap-3 items-center">
                     <div className="grayscale">
                       <img
-                        src={darkMode ? "address-white.png" : "/address.png"}
-                        alt="address"
+                        src={darkMode ? "location-white.png" : "/location.png"}
+                        alt="location"
                         className="h-8 md:h-10"
                       />
                     </div>
@@ -694,10 +671,9 @@ const Landing = () => {
                 <div className="flex flex-col items-start gap-2 w-full">
                   <div className={textClass}>Have something to say?</div>
                   <textarea
-                    placeholder="Greetings, human! I'm interested in whatever magic you're selling."
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
-                    className={`w-full border-b ${inputBorderClass} ${textClass} mt-3 ring-0 outline-none bg-transparent`}
+                    className={`w-full ${inputBorderClass} ${textClass} mt-3 ring-0 outline-none rounded-md p-2 resize-none`}
                     rows={3}
                   ></textarea>
                   <button
