@@ -174,9 +174,9 @@ const SnakeGame = () => {
             💀 snake.exe has stopped working 💀
           </div>
           <div className="text-gray-300 text-sm text-center">
-            Was it the snake or the player?
+            Skill Issue? Or just a bug?
           </div>
-          <div className="text-yellow-400 mt-5">High Score: {highScore}</div>
+          <div className="text-yellow-400 mt-5">Your High Score: {highScore}</div>
           <div className="text-[#efefed]">Your Score: {score}</div>
           <button
             className="bg-[#efefed] text-gray-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
