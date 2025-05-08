@@ -51,6 +51,57 @@ const Landing = () => {
     },
   ];
 
+  const expertise = [
+    {
+      title: "Figma",
+      image: "/figma.png",
+      desc: "Design Tool",
+      bg: "bg-teal-900",
+    },
+    {
+      title: "Typescript",
+      image: "/ts.png",
+      desc: "Javascript superset",
+      bg: "bg-cyan-900",
+    },
+    {
+      title: "React",
+      image: "/react.png",
+      desc: "Frontend Framework",
+      bg: "bg-sky-900",
+    },
+    {
+      title: "Python",
+      image: "/python.svg",
+      desc: "The GOAT of programming languages",
+      bg: "bg-indigo-900",
+    },
+    {
+      title: "FastAPI",
+      image: "/fastapi.svg",
+      desc: "Backend Framework",
+      bg: "bg-emerald-900",
+    },
+    {
+      title: "Tailwind CSS",
+      image: "/tailwind.png",
+      desc: "CSS Framework",
+      bg: "bg-sky-900",
+    },
+    {
+      title: "Git",
+      image: "/git.png",
+      desc: "Version Control",
+      bg: "bg-amber-950",
+    },
+    {
+      title: "Linux",
+      image: "/linux.png",
+      desc: "Operating System",
+      bg: "bg-gray-900",
+    },
+  ];
+
   const sendEmail = () => {
     if (!body) {
       return toast.error("Don't you want to say something? 😅");
@@ -295,6 +346,46 @@ const Landing = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Technologies section */}
+        <div
+          className={`px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 md:my-52 items-center justify-center`}
+        >
+          <div
+            className={`underline-button ${underlineButtonClass} text-[20px] md:text-[32px]`}
+          >
+            What I Work With
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
+            {expertise.map((item, i) => {
+              return (
+                <div key={i} className={`flex items-center w-full gap-3 rounded-md bg-white p-2`}>
+                  <div
+                    className={`rounded-md ${item.bg} h-12 w-12 flex items-center justify-center`}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-10 md:h-8"
+                    />
+                  </div>
+                  <div>
+                    <div
+                      className={`${textClass} text-[20px] md:text-[24px] underline-button`}
+                    >
+                      {item.title}
+                    </div>
+                    <div
+                      className={`${textClass} text-[14px] md:text-[16px] -mt-3`}
+                    >
+                      {item.desc}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
