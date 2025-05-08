@@ -12,11 +12,45 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import SnakeGame from "../components/SnakeGame";
 import { FaMoon, FaSun } from "react-icons/fa";
+import ExperienceCard from "../components/ExperienceCard";
 
 const Landing = () => {
   const [body, setBody] = useState("I have an awesome idea about ");
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  // Classes that change based on dark mode
+  const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
+  const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
+  const textClass = darkMode ? "text-gray-200" : "text-gray-800";
+  const buttonBgClass = darkMode
+    ? "bg-gray-700 hover:bg-gray-600"
+    : "bg-white hover:bg-white/80";
+    const buttonFixedBgClass = darkMode
+    ? "bg-gray-700 hover:bg-gray-600 border-2 border-gray-200"
+    : "bg-white hover:bg-white/80 border-2 border-gray-800";
+  const buttonTextClass = darkMode ? "text-gray-200" : "text-gray-800";
+  const buttonFixedTextClass = darkMode ? "text-gray-200" : "text-gray-800";
+  const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
+  const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
+  const inputBorderClass = darkMode
+    ? "bg-transparent border-b border-gray-200"
+    : "bg-[#efefed]";
+  const contactBgClass = darkMode ? "bg-gray-800" : "lg:bg-white";
+  const underlineButtonClass = darkMode
+    ? "underline-button-dark"
+    : "underline-button-light";
+  const socialButtonClass = darkMode
+    ? "bg-[#efefed]/80 hover:bg-[#efefed]"
+    : "bg-gray-800/80 hover:bg-gray-800";
+  const socialButtonTextClass = darkMode ? "text-gray-800" : "text-[#efefed]";
+  const socialButtonBorderClass = darkMode
+    ? "border-b border-gray-800"
+    : "border-b border-[#efefed]";
+  const sendButtonClass = darkMode
+    ? "bg-[#efefed]/80 text-gray-800 hover:bg-[#efefed]"
+    : " bg-gray-800/80 text-[#efefed] hover:bg-gray-800";
+  const iconClass = darkMode ? "bg-gray-600/80" : "bg-gray-200/80";
 
   const projects = [
     {
@@ -55,50 +89,121 @@ const Landing = () => {
     {
       title: "Figma",
       image: "/figma.png",
-      desc: "Design Tool",
-      bg: "bg-teal-900",
+      desc: "Designs that click.",
     },
     {
       title: "Typescript",
       image: "/ts.png",
-      desc: "Javascript superset",
-      bg: "bg-cyan-900",
+      desc: "Javascript but better.",
     },
     {
       title: "React",
       image: "/react.png",
-      desc: "Frontend Framework",
-      bg: "bg-sky-900",
+      desc: "JSX and chill.",
+    },
+    {
+      title: "Next.js",
+      image: "/nextjs.png",
+      desc: "React with superpowers.",
     },
     {
       title: "Python",
       image: "/python.svg",
-      desc: "The GOAT of programming languages",
-      bg: "bg-indigo-900",
+      desc: "GOAT of programming.",
     },
     {
       title: "FastAPI",
       image: "/fastapi.svg",
-      desc: "Backend Framework",
-      bg: "bg-emerald-900",
+      desc: "Fast backend magic.",
     },
     {
       title: "Tailwind CSS",
       image: "/tailwind.png",
-      desc: "CSS Framework",
-      bg: "bg-sky-900",
+      desc: "Style without the stress.",
     },
     {
       title: "Git",
       image: "/git.png",
-      desc: "Version Control",
-      bg: "bg-amber-950",
+      desc: "Coding time machine.",
     },
     {
       title: "Linux",
       image: "/linux.png",
-      desc: "Operating System",
-      bg: "bg-gray-900",
+      desc: "The best operating system.",
+    },
+    {
+      title: "PostgreSQL",
+      image: "/postgres.png",
+      desc: "Relational database powerhouse.",
+    },
+    {
+      title: "Postman",
+      image: "/postman.svg",
+      desc: "API testing made easy.",
+    },
+    {
+      title: "Photoshop",
+      image: "/photoshop.png",
+      desc: "Pixel-perfect editing.",
+    },
+  ];
+
+  const experiences = [
+    {
+      title: "Software Engineer",
+      company: "Maestro Solutions Ltd.",
+      duration: "May 2025 - Present (On-site, Full-time)",
+      image: darkMode ? "/maestro-white.png" : "/maestro.png",
+      summary: "Building tools for ISPs to monitor and manage.",
+      details: [
+        "Working on ISP tools like IP log servers, billing systems, and SMS gateways.",
+        "Currently developing a network device monitoring app with ONU data and tree views.",
+        "Designing scalable frontend and backend systems.",
+        "Collaborating with network engineers to optimize real-time monitoring.",
+      ],
+      isCurrent: true,
+    },
+    {
+      title: "Software Engineer",
+      company: "Shaped.ai",
+      duration: "April 2023 - March 2024 (Remote, Contract)",
+      image: darkMode ? "/shaped-white.svg" : "/shaped.svg",
+      summary: "Visualized data to highlight model performance.",
+      details: [
+        "Implemented complex charts using Visx and custom libraries.",
+        "Built an interactive dot plot from scratch for 10k+ points.",
+        "Enabled zooming, panning, and full interactivity.",
+        "Helped users understand the impact of ML recommendations.",
+      ],
+      isCurrent: false,
+    },
+    {
+      title: "Full Stack Developer",
+      company: "Zoopsign",
+      duration: "June 2022 - March 2023 (Remote, Contract)",
+      image: darkMode ? "/zoopsign-white.svg" : "/zoopsign.svg",
+      summary: "Developed a premium in-browser PDF editor.",
+      details: [
+        "Created the EditPDF module with drawing, text, and shape tools.",
+        "Enabled size, color, rotation, and image manipulation.",
+        "Used refs to handle dynamic positioning and transformations.",
+        "Contributed to core features now part of the premium plan.",
+      ],
+      isCurrent: false,
+    },
+    {
+      title: "Intern",
+      company: "Amicsoft",
+      duration: "January 2022 - May 2022 (On-site, Part-time)",
+      image: darkMode ? "/amicsoft-white.png" : "/amicsoft.png",
+      summary: "Learned dev best practices through real-world projects.",
+      details: [
+        "Worked under seniors to grasp core JavaScript and clean code.",
+        "Contributed to live websites in production environments.",
+        "Observed software lifecycles and sprint planning.",
+        "First exposure to real-world collaboration and QA testing.",
+      ],
+      isCurrent: false,
     },
   ];
 
@@ -140,6 +245,16 @@ const Landing = () => {
       setDarkMode(false);
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowButton(window.scrollY > 100); // Show after 100px scroll
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     checkDarkMode();
   }, []);
@@ -161,39 +276,11 @@ const Landing = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Classes that change based on dark mode
-  const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
-  const textClass = darkMode ? "text-gray-200" : "text-gray-800";
-  const buttonBgClass = darkMode
-    ? "bg-gray-700 hover:bg-gray-600"
-    : "bg-white hover:bg-white/80";
-  const buttonTextClass = darkMode ? "text-gray-200" : "text-gray-800";
-  const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
-  const inputBorderClass = darkMode
-    ? "bg-transparent border-b border-gray-200"
-    : "bg-[#efefed]";
-  const contactBgClass = darkMode ? "bg-gray-800" : "md:bg-white";
-  const underlineButtonClass = darkMode
-    ? "underline-button-dark"
-    : "underline-button-light";
-  const socialButtonClass = darkMode
-    ? "bg-[#efefed]/80 hover:bg-[#efefed]"
-    : "bg-gray-800/80 hover:bg-gray-800";
-  const socialButtonTextClass = darkMode ? "text-gray-800" : "text-[#efefed]";
-  const socialButtonBorderClass = darkMode
-    ? "border-b border-gray-800"
-    : "border-b border-[#efefed]";
-  const sendButtonClass = darkMode
-    ? "bg-[#efefed]/80 text-gray-800 hover:bg-[#efefed]"
-    : " bg-gray-800/80 text-[#efefed] hover:bg-gray-800";
-
   return (
     <div className={`h-full ${mainBgClass} overflow-x-hidden`}>
-      <div className="w-full mx-auto md:px-0">
+      <div className="w-full mx-auto lg:px-0">
         {/* Navbar */}
-        <div className="px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-5">
+        <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-5">
           <div>
             <img
               src={darkMode ? "signature.png" : "/signature-white.png"}
@@ -201,6 +288,19 @@ const Landing = () => {
               className="h-8"
             />
           </div>
+          {showButton && (
+            <button
+              className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} py-4 px-4 rounded-full duration-200 transition-all flex items-center justify-center z-50`}
+              onClick={toggleDarkMode}
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <FaSun className="h-5 w-5" />
+              ) : (
+                <FaMoon className="h-5 w-5" />
+              )}
+            </button>
+          )}
           <div className="flex gap-3">
             <button
               className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} py-2 px-4 rounded-full duration-200 transition-all flex items-center justify-center`}
@@ -214,7 +314,7 @@ const Landing = () => {
               )}
             </button>
             <button
-              className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} px-5 md:px-8 py-2 md:py-3 rounded-full duration-200 transition-all`}
+              className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} px-5 lg:px-8 py-2 lg:py-3 rounded-full duration-200 transition-all`}
               onClick={() => window.open("/Resume__Raufun_Nazin_Srizon.pdf")}
             >
               View Resume
@@ -234,7 +334,7 @@ const Landing = () => {
             }}
           >
             <BiLogoGmail
-              className={`${socialButtonTextClass} text-xl h-3 w-3 md:h-5 md:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
             />
           </button>
           <button
@@ -244,7 +344,7 @@ const Landing = () => {
             }
           >
             <FaLinkedinIn
-              className={`${socialButtonTextClass} text-xl h-3 w-3 md:h-5 md:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
             />
           </button>
           <button
@@ -252,7 +352,7 @@ const Landing = () => {
             onClick={() => window.open("https://www.github.com/RaufunNazin")}
           >
             <FaGithub
-              className={`${socialButtonTextClass} text-xl h-3 w-3 md:h-5 md:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
             />
           </button>
           <button
@@ -260,7 +360,7 @@ const Landing = () => {
             onClick={() => window.open("https://wa.me/8801682386618")}
           >
             <FaWhatsapp
-              className={`${socialButtonTextClass} text-xl h-3 w-3 md:h-5 md:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
             />
           </button>
           <button
@@ -268,7 +368,7 @@ const Landing = () => {
             onClick={() => window.open("https://www.facebook.com/srizon13")}
           >
             <FaFacebookF
-              className={`${socialButtonTextClass} text-xl h-3 w-3 md:h-5 md:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
             />
           </button>
         </div>
@@ -276,19 +376,19 @@ const Landing = () => {
         {/* Hero section */}
         <div className={secondaryBgClass}>
           <div
-            className={`py-24 md:py-52 ${sectionAccentBgClass} rounded-b-[50px] md:rounded-b-[150px]`}
+            className={`py-24 lg:py-52 ${sectionAccentBgClass} rounded-b-[50px] lg:rounded-b-[150px]`}
           >
             <div
-              className={`px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center md:items-start gap-8 md:gap-5 md:border-r-4 ${borderClass}`}
+              className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-8 lg:gap-5 lg:border-r-4 ${borderClass}`}
             >
               <div className={`font-bold ${textClass} -mb-8`}>
                 <div
-                  className={`${textClass} fade-in-text text-[20px] md:text-[32px] font-light text-center md:text-left`}
+                  className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left`}
                 >
                   Hello, I'm Raufun Nazin Srizon
                 </div>
                 <div
-                  className={`${textClass} fade-in-text text-[40px] md:text-[96px] uppercase text-center md:text-left`}
+                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left`}
                 >
                   I Transform Ideas Into
                   <br />
@@ -296,12 +396,12 @@ const Landing = () => {
                 </div>
               </div>
               <div
-                className={`${underlineButtonClass} text-[20px] md:text-[32px] fade-in-text underline-button w-fit text-center md:text-left`}
+                className={`${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left`}
               >
                 Software Engineer · Full Stack
               </div>
               <button
-                className={`px-5 md:px-8 py-2 md:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 md:-mt-0`}
+                className={`px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0`}
                 onClick={() => scrollToSection("contact-section")}
               >
                 Get in Touch
@@ -313,11 +413,11 @@ const Landing = () => {
         {/* Companies section */}
         <div className={mainBgClass}>
           <div
-            className={`py-12 md:py-24 ${secondaryBgClass} rounded-b-[50px] md:rounded-b-[150px]`}
+            className={`py-12 lg:py-24 ${secondaryBgClass} rounded-b-[50px] lg:rounded-b-[150px]`}
           >
-            <div className="px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center gap-5 md:gap-10 fade-in-text">
+            <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center gap-5 lg:gap-10 fade-in-text">
               <div
-                className={`underline-button ${underlineButtonClass} text-[20px] md:text-[32px]`}
+                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
               >
                 Trusted by
               </div>
@@ -326,22 +426,22 @@ const Landing = () => {
                   <img
                     src={darkMode ? "maestro-white.png" : "/maestro.png"}
                     alt="Maestro Solutions"
-                    className="h-5 md:h-7 mx-auto"
-                  />
-                  <img
-                    src={darkMode ? "amicsoft-white.png" : "/amicsoft.png"}
-                    alt="Amicsoft"
-                    className="h-5 md:h-6 mx-auto"
+                    className="h-5 lg:h-7 mx-auto"
                   />
                   <img
                     src={darkMode ? "shaped-white.svg" : "/shaped.svg"}
                     alt="Shaped.ai"
-                    className="h-6 md:h-9 mx-auto"
+                    className="h-6 lg:h-9 mx-auto"
                   />
                   <img
                     src={darkMode ? "zoopsign-white.svg" : "/zoopsign.svg"}
                     alt="Zoopsign"
-                    className="h-6 md:h-7 mx-auto"
+                    className="h-6 lg:h-7 mx-auto"
+                  />
+                  <img
+                    src={darkMode ? "amicsoft-white.png" : "/amicsoft.png"}
+                    alt="Amicsoft"
+                    className="h-5 lg:h-6 mx-auto"
                   />
                 </div>
               </div>
@@ -351,34 +451,37 @@ const Landing = () => {
 
         {/* Technologies section */}
         <div
-          className={`px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 md:my-52 items-center justify-center`}
+          className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 lg:my-52 items-center justify-center`}
         >
           <div
-            className={`underline-button ${underlineButtonClass} text-[20px] md:text-[32px]`}
+            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
           >
-            What I Work With
+            What I Am Experienced In
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
             {expertise.map((item, i) => {
               return (
-                <div key={i} className={`flex items-center w-full gap-3 rounded-md bg-white p-2`}>
+                <div
+                  key={i}
+                  className={`flex items-center w-full gap-3 rounded-md ${secondaryBgClass} p-2`}
+                >
                   <div
-                    className={`rounded-md ${item.bg} h-12 w-12 flex items-center justify-center`}
+                    className={`rounded-md ${iconClass} h-8 lg:h-12 w-8 lg:w-12 flex items-center justify-center`}
                   >
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="h-10 md:h-8"
+                      className="h-6 lg:h-8"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <div
-                      className={`${textClass} text-[20px] md:text-[24px] underline-button`}
+                      className={`${textClass} text-[20px] lg:text-[24px] underline-button`}
                     >
                       {item.title}
                     </div>
                     <div
-                      className={`${textClass} text-[14px] md:text-[16px] -mt-3`}
+                      className={`${textClass} text-[14px] lg:text-[16px] -mt-3`}
                     >
                       {item.desc}
                     </div>
@@ -391,23 +494,23 @@ const Landing = () => {
 
         {/* Projects section */}
         <div
-          className={`px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 md:my-52 items-center justify-center`}
+          className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 lg:my-52 items-center justify-center`}
           id="projects-section"
         >
           <div
-            className={`underline-button ${underlineButtonClass} text-[20px] md:text-[32px]`}
+            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
           >
             What I've Built So Far
           </div>
           <div
-            className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 fade-in-up"
+            className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 fade-in-up"
             id="slider-section"
           >
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`pb-5 md:pb-8 ${
-                  project.title === "Snapgenix" ? "md:col-span-2" : ""
+                className={`pb-5 lg:pb-8 ${
+                  project.title === "Snapgenix" ? "lg:col-span-2" : ""
                 }`}
               >
                 <div className="flex flex-col justify-start gap-3">
@@ -417,12 +520,12 @@ const Landing = () => {
                     className="w-full h-full object-cover rounded-md"
                   />
                   <div
-                    className={`${textClass} text-[20px] md:text-[24px] underline-button`}
+                    className={`${textClass} text-[20px] lg:text-[24px] underline-button`}
                   >
                     {project.title}
                   </div>
                   <div
-                    className={`${textClass} text-[14px] md:text-[16px] -mt-3`}
+                    className={`${textClass} text-[14px] lg:text-[16px] -mt-3`}
                   >
                     {project.description}
                   </div>
@@ -435,22 +538,25 @@ const Landing = () => {
         {/* Skills section */}
         <div className={mainBgClass}>
           <div
-            className={`py-24 md:py-52 ${secondaryBgClass} rounded-[50px] md:rounded-[150px]`}
+            className={`py-24 lg:py-52 ${secondaryBgClass} rounded-[50px] lg:rounded-[150px]`}
           >
-            <div className="px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center">
+            <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center">
               <div
-                className={`${underlineButtonClass} text-[20px] md:text-[32px] underline-button`}
+                className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
               >
-                What Sets Me Apart
+                Where I Have Worked
+              </div>
+              <div className={`${textClass} text-[14px] lg:text-[16px]`}>
+                Click to flip the cards
               </div>
 
               {/* Bento Box */}
-              <div className="w-full grid grid-cols-1 md:grid-cols-6 md:grid-rows-3 gap-3 md:gap-5 rounded-md">
-                <div className="rounded-md p-5 bg-green-400 md:bg-green-400/80 hover:bg-green-400 transition-all duration-200 flex flex-col justify-center items-center">
+              {/* <div className="w-full grid grid-cols-1 lg:grid-cols-6 lg:grid-rows-3 gap-3 lg:gap-5 rounded-md">
+                <div className="rounded-md p-5 bg-green-400 lg:bg-green-400/80 hover:bg-green-400 transition-all duration-200 flex flex-col justify-center items-center">
                   <div className="text-[40px]">4+</div>
                   <div className="text-[20px]">Years of experience</div>
                 </div>
-                <div className="rounded-md p-5 bg-purple-400 md:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
+                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
                   <div className="flex flex-col items-center justify-around gap-5">
                     <img
                       src="/gear.png"
@@ -463,15 +569,15 @@ const Landing = () => {
                   </div>
                 </div>
 
-                <div className="md:col-span-2 rounded-md p-5 bg-blue-400 md:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
+                <div className="lg:col-span-2 rounded-md p-5 bg-blue-400 lg:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
                   <img src="/shaped.svg" alt="shaped" className="h-6" />
                   <div className="text-[32px]">Software Engineer</div>
                   <div className="text-[16px]">April 2023 - March 2024</div>
                 </div>
 
-                <div className="col-span-1 row-span-3 rounded-md p-5 bg-[#efefed] md:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
+                <div className="col-span-1 row-span-3 rounded-md p-5 bg-[#efefed] lg:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
                   <div>Specialized Excellence</div>
-                  <div className="grid grid-cols-5 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-5 lg:grid-cols-2 gap-5">
                     <img
                       src="/expressjs.png"
                       alt="expressjs"
@@ -544,7 +650,7 @@ const Landing = () => {
                     />
                   </div>
                 </div>
-                <div className="rounded-md p-5 bg-purple-400 md:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
+                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
                   <div className="flex flex-col items-center justify-around gap-5">
                     <img
                       src="/idea.png"
@@ -556,7 +662,7 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-md p-5 bg-purple-400 md:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
+                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
                   <div className="flex flex-col gap-5 items-center justify-around">
                     <img
                       src="/detail.png"
@@ -568,7 +674,7 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="md:col-span-2 rounded-md p-5 bg-yellow-400 md:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
+                <div className="lg:col-span-2 rounded-md p-5 bg-yellow-400 lg:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
                   <div className="flex gap-2 items-center">
                     <img src="/medal.png" alt="medal" className="h-7" />
                     <div className="text-[24px]">Finalist</div>
@@ -576,7 +682,7 @@ const Landing = () => {
                   <div className="text-[32px]">ITVerse 2023</div>
                   <div className="text-[16px]">IIT, DU</div>
                 </div>
-                <div className="rounded-md p-5 bg-purple-400 md:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
+                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
                   <div className="flex flex-col gap-5 items-center justify-around">
                     <img
                       src="/hourglass.png"
@@ -588,9 +694,9 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-1 row-span-2 rounded-md p-5 bg-[#efefed] md:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
+                <div className="col-span-1 row-span-2 rounded-md p-5 bg-[#efefed] lg:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
                   <div>Growing Competence</div>
-                  <div className="grid grid-cols-5 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-5 lg:grid-cols-2 gap-5">
                     <img
                       src="/docker.webp"
                       alt="docker"
@@ -643,7 +749,7 @@ const Landing = () => {
                     />
                   </div>
                 </div>
-                <div className="md:col-span-2 rounded-md p-5 bg-yellow-400 md:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
+                <div className="lg:col-span-2 rounded-md p-5 bg-yellow-400 lg:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
                   <div className="flex gap-2 items-center">
                     <img src="/medal.png" alt="medal" className="h-7" />
                     <div className="text-[24px]">Finalist</div>
@@ -651,20 +757,25 @@ const Landing = () => {
                   <div className="text-[32px]">Code Samurai 2024</div>
                   <div className="text-[16px]">CSE, DU</div>
                 </div>
-                <div className="md:col-span-2 rounded-md p-5 bg-blue-400 md:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
+                <div className="lg:col-span-2 rounded-md p-5 bg-blue-400 lg:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
                   <img src="/zoopsign.svg" alt="shaped" className="h-6" />
                   <div className="text-[32px]">Full Stack Developer</div>
                   <div className="text-[16px]">June 2022 - March 2023</div>
                 </div>
+              </div> */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
+                {experiences.map((exp, idx) => (
+                  <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* Snake Game */}
-        <div className="hidden md:flex flex-col gap-5 my-24 md:my-52 items-center justify-center">
+        <div className="hidden lg:flex flex-col gap-5 my-24 lg:my-52 items-center justify-center">
           <div
-            className={`${underlineButtonClass} text-[20px] md:text-[32px] underline-button`}
+            className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
           >
             Bored? Try This Nostalgia!
           </div>
@@ -674,14 +785,14 @@ const Landing = () => {
         {/* Contact section */}
         <div className={mainBgClass}>
           <div
-            className={`${contactBgClass} pt-24 md:pt-52 pb-8 md:pb-16 md:rounded-t-[150px]`}
+            className={`${contactBgClass} pt-24 lg:pt-52 pb-8 lg:pb-16 lg:rounded-t-[150px]`}
           >
             <div
-              className="px-2 md:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center"
+              className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center"
               id="contact-section"
             >
               <div
-                className={`${underlineButtonClass} text-[32px] md:text-[52px] underline-button`}
+                className={`${underlineButtonClass} text-[32px] lg:text-[52px] underline-button`}
               >
                 Get in Touch
               </div>
@@ -700,7 +811,7 @@ const Landing = () => {
                       <img
                         src={darkMode ? "mail-white.png" : "/mail.png"}
                         alt="email"
-                        className="h-8 md:h-10"
+                        className="h-8 lg:h-10"
                       />
                     </div>
                     <div>
@@ -729,7 +840,7 @@ const Landing = () => {
                       <img
                         src={darkMode ? "call-white.png" : "/call.png"}
                         alt="phone"
-                        className="h-8 md:h-10"
+                        className="h-8 lg:h-10"
                       />
                     </div>
                     <div>
@@ -746,7 +857,7 @@ const Landing = () => {
                       <img
                         src={darkMode ? "location-white.png" : "/location.png"}
                         alt="location"
-                        className="h-8 md:h-10"
+                        className="h-8 lg:h-10"
                       />
                     </div>
                     <div>
@@ -768,7 +879,7 @@ const Landing = () => {
                     rows={3}
                   ></textarea>
                   <button
-                    className={`px-3 md:px-5 py-1 md:py-2 rounded-md cursor-pointer w-[150px] duration-200 transition-all flex justify-center mt-3 ${sendButtonClass}`}
+                    className={`px-3 lg:px-5 py-1 lg:py-2 rounded-md cursor-pointer w-[150px] duration-200 transition-all flex justify-center mt-3 ${sendButtonClass}`}
                     onClick={sendEmail}
                   >
                     {loading ? (
@@ -793,7 +904,7 @@ const Landing = () => {
             }`}
           />
           <div
-            className={`${textClass} text-[12px] md:text-[20px] text-center py-3`}
+            className={`${textClass} text-[12px] lg:text-[20px] text-center py-3`}
           >
             &copy; 2025 Raufun Nazin Srizon. All rights reserved.
           </div>
