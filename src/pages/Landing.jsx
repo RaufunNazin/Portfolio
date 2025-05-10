@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { toast } from "react-toastify";
-import emailjs from "@emailjs/browser";
-import { AiOutlineLoading } from "react-icons/ai";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
@@ -15,10 +12,11 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import ExperienceCard from "../components/ExperienceCard";
 
 const Landing = () => {
-  const [body, setBody] = useState("I have an awesome idea about ");
-  const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState(null);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
   // Classes that change based on dark mode
   const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
@@ -26,16 +24,13 @@ const Landing = () => {
   const buttonBgClass = darkMode
     ? "bg-gray-700 hover:bg-gray-600"
     : "bg-white hover:bg-white/80";
-    const buttonFixedBgClass = darkMode
+  const buttonFixedBgClass = darkMode
     ? "bg-gray-700 hover:bg-gray-600 border-2 border-gray-200"
     : "bg-white hover:bg-white/80 border-2 border-gray-800";
   const buttonTextClass = darkMode ? "text-gray-200" : "text-gray-800";
   const buttonFixedTextClass = darkMode ? "text-gray-200" : "text-gray-800";
   const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
-  const inputBorderClass = darkMode
-    ? "bg-transparent border-b border-gray-200"
-    : "bg-[#efefed]";
   const contactBgClass = darkMode ? "bg-gray-800" : "lg:bg-white";
   const underlineButtonClass = darkMode
     ? "underline-button-dark"
@@ -47,39 +42,41 @@ const Landing = () => {
   const socialButtonBorderClass = darkMode
     ? "border-b border-gray-800"
     : "border-b border-[#efefed]";
-  const sendButtonClass = darkMode
-    ? "bg-[#efefed]/80 text-gray-800 hover:bg-[#efefed]"
-    : " bg-gray-800/80 text-[#efefed] hover:bg-gray-800";
   const iconClass = darkMode ? "bg-gray-600/80" : "bg-gray-200/80";
 
   const projects = [
     {
       src: "/snapgenix.png",
       title: "Snapgenix",
+      type: "Portfolio",
       description:
         "A photography and videography company specializing in food photography, as well as product and event photography.",
     },
     {
       src: "/ukway.png",
       title: "UKWay",
+      type: "Consultancy",
       description:
         "An education consultancy guiding students to apply to various universities across the UK.",
     },
     {
       src: "/msadmission.png",
       title: "MS Admission Portal, CSEDU",
+      type: "Admission Portal",
       description:
         "Official admission portal for MS students of the Department of CSE, University of Dhaka.",
     },
     {
       src: "/pmics.png",
       title: "PMICS Admission Portal, CSEDU",
+      type: "Admission Portal",
       description:
         "Admission portal for PMICS master's program students of the Department of CSE, University of Dhaka.",
     },
     {
       src: "/swadeshfood.png",
       title: "Swadesh Food",
+      type: "E-Commerce",
       description:
         "An agro-farm company focused on producing and delivering fresh farm products directly to consumers.",
     },
@@ -152,7 +149,8 @@ const Landing = () => {
     {
       title: "Software Engineer",
       company: "Maestro Solutions Ltd.",
-      duration: "May 2025 - Present (On-site, Full-time)",
+      duration: "May 2025 - Present",
+      type: "On-site, Full-time",
       image: darkMode ? "/maestro-white.png" : "/maestro.png",
       summary: "Building tools for ISPs to monitor and manage.",
       details: [
@@ -166,9 +164,10 @@ const Landing = () => {
     {
       title: "Software Engineer",
       company: "Shaped.ai",
-      duration: "April 2023 - March 2024 (Remote, Contract)",
+      duration: "April 2023 - March 2024",
+      type: "Remote, Contract",
       image: darkMode ? "/shaped-white.svg" : "/shaped.svg",
-      summary: "Visualized data to highlight model performance.",
+      summary: "Visualized AI model performance data.",
       details: [
         "Implemented complex charts using Visx and custom libraries.",
         "Built an interactive dot plot from scratch for 10k+ points.",
@@ -180,7 +179,8 @@ const Landing = () => {
     {
       title: "Full Stack Developer",
       company: "Zoopsign",
-      duration: "June 2022 - March 2023 (Remote, Contract)",
+      duration: "June 2022 - March 2023",
+      type: "Remote, Contract",
       image: darkMode ? "/zoopsign-white.svg" : "/zoopsign.svg",
       summary: "Developed a premium in-browser PDF editor.",
       details: [
@@ -192,11 +192,12 @@ const Landing = () => {
       isCurrent: false,
     },
     {
-      title: "Intern",
+      title: "Dev Intern",
       company: "Amicsoft",
-      duration: "January 2022 - May 2022 (On-site, Part-time)",
+      duration: "January 2022 - May 2022",
+      type: "Remote, Internship",
       image: darkMode ? "/amicsoft-white.png" : "/amicsoft.png",
-      summary: "Learned dev best practices through real-world projects.",
+      summary: "Learned dev best practices through mentorship.",
       details: [
         "Worked under seniors to grasp core JavaScript and clean code.",
         "Contributed to live websites in production environments.",
@@ -207,24 +208,13 @@ const Landing = () => {
     },
   ];
 
-  const sendEmail = () => {
-    if (!body) {
-      return toast.error("Don't you want to say something? 😅");
-    }
-    setLoading(true);
-    emailjs
-      .send(
-        "service_zoxiy5b",
-        "template_ewxcftq",
-        { message: body },
-        "MFnvQ0EM3D9sI6-qZ"
-      )
-      .then(() => toast.success("I've received your email!"))
-      .catch(() => toast.error("Failed to send email!"))
-      .finally(() => {
-        setLoading(false);
-        setBody("");
-      });
+  const handleMouseMove = (e, src) => {
+    setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 }); // offset to avoid cursor overlap
+    setHoveredImage(src);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredImage(null);
   };
 
   const scrollToSection = (section) => {
@@ -385,10 +375,11 @@ const Landing = () => {
                 <div
                   className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left`}
                 >
-                  Hello, I'm Raufun Nazin Srizon
+                  Hello, I'm{" "}
+                  <span className="font-medium">Raufun Nazin Srizon</span>
                 </div>
                 <div
-                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left`}
+                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal`}
                 >
                   I Transform Ideas Into
                   <br />
@@ -502,7 +493,7 @@ const Landing = () => {
           >
             What I've Built So Far
           </div>
-          <div
+          {/* <div
             className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 fade-in-up"
             id="slider-section"
           >
@@ -532,6 +523,54 @@ const Landing = () => {
                 </div>
               </div>
             ))}
+          </div> */}
+          <div className="flex flex-col w-full relative">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                onMouseMove={(e) => handleMouseMove(e, project.src)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="flex flex-col md:flex-row w-full justify-between md:items-center py-5 lg:py-8 gap-2 md:gap-0">
+                  <div className="flex flex-col justify-between items-start">
+                    <div className={`${textClass} text-[24px] lg:[32px]`}>
+                      {project.title}
+                    </div>
+                    <div className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}>
+                      {project.description}
+                    </div>
+                    <div className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}>
+                    {project.type}
+                  </div>
+                  </div>
+                  <div className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}>
+                    {project.type}
+                  </div>
+                  <div className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}>
+                      {project.description}
+                    </div>
+                </div>
+                <hr className={`${borderClass}`} />
+              </div>
+            ))}
+
+            {hoveredImage && (
+              <div
+                className="fixed z-50 pointer-events-none shadow-lg border rounded-md"
+                style={{
+                  top: cursorPos.y,
+                  left: cursorPos.x,
+                  width: "400px",
+                  backgroundColor: "white",
+                }}
+              >
+                <img
+                  src={hoveredImage}
+                  alt="preview"
+                  className="w-full h-auto rounded"
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -544,7 +583,7 @@ const Landing = () => {
               <div
                 className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
               >
-                Where I Have Worked
+                Where I Have Contributed
               </div>
               <div className={`${textClass} text-[14px] lg:text-[16px]`}>
                 Click to flip the cards
@@ -785,19 +824,19 @@ const Landing = () => {
         {/* Contact section */}
         <div className={mainBgClass}>
           <div
-            className={`${contactBgClass} pt-24 lg:pt-52 pb-8 lg:pb-16 lg:rounded-t-[150px]`}
+            className={`${contactBgClass} py-12 lg:py-20 lg:rounded-t-[150px]`}
           >
             <div
               className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center"
               id="contact-section"
             >
               <div
-                className={`${underlineButtonClass} text-[32px] lg:text-[52px] underline-button`}
+                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
               >
                 Get in Touch
               </div>
               <div className="flex flex-col md:flex-row justify-around w-full items-center gap-10">
-                <div className="flex flex-col gap-5 w-full">
+                <div className="flex flex-col md:flex-row justify-between md:items-center w-full gap-3 md:gap-0">
                   <div
                     className="flex gap-3 items-center cursor-pointer w-fit"
                     onClick={() => {
@@ -870,25 +909,6 @@ const Landing = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-start gap-2 w-full">
-                  <div className={textClass}>Have something to say?</div>
-                  <textarea
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
-                    className={`w-full ${inputBorderClass} ${textClass} mt-3 ring-0 outline-none rounded-md p-2 resize-none`}
-                    rows={3}
-                  ></textarea>
-                  <button
-                    className={`px-3 lg:px-5 py-1 lg:py-2 rounded-md cursor-pointer w-[150px] duration-200 transition-all flex justify-center mt-3 ${sendButtonClass}`}
-                    onClick={sendEmail}
-                  >
-                    {loading ? (
-                      <AiOutlineLoading className="animate-spin text-[#efefed] text-2xl" />
-                    ) : (
-                      "Send Message"
-                    )}
-                  </button>
-                </div>
               </div>
             </div>
           </div>
@@ -906,7 +926,7 @@ const Landing = () => {
           <div
             className={`${textClass} text-[12px] lg:text-[20px] text-center py-3`}
           >
-            &copy; 2025 Raufun Nazin Srizon. All rights reserved.
+            2025 &copy; Raufun Nazin Srizon. All rights reserved.
           </div>
         </div>
       </div>

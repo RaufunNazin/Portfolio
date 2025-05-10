@@ -24,22 +24,31 @@ const ExperienceCard = ({ exp, darkMode }) => {
               exp.company == "Amicsoft" ? "h-7" : "h-8"
             } mb-4`}
           />
-          <h3 className={`${textClass} text-[20px] lg:text-[28px]`}>
-            {exp.title}
-          </h3>
-          <p className={`${textClass} text-[16px] lg:text-[20px]`}>
-            {exp.company}
-          </p>
-          <p className={`${textClass} text-[12px] lg:text-[16px] italic`}>
-            {exp.duration}
-          </p>
+          <div>
+            <h3 className={`${textClass} text-[24px] lg:text-[32px]`}>
+              {exp.title}
+            </h3>
+            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+              {exp.company}
+            </p>
+          </div>
+          <div>
+            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+              {exp.duration}
+            </p>
+            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+              {exp.type}
+            </p>
+          </div>
           <p className={`${textClass} mt-4 text-[12px] lg:text-[16px]`}>
             {exp.summary}
           </p>
         </div>
 
         {/* Back Side */}
-        <div className={`flip-card-back flex flex-col justify-around p-6 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto`}>
+        <div
+          className={`flip-card-back flex flex-col justify-around p-6 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto`}
+        >
           <img
             src={exp.image}
             alt={exp.company}
