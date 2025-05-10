@@ -3,14 +3,26 @@ import { useState } from "react";
 
 const ExperienceCard = ({ exp, darkMode }) => {
   const [flipped, setFlipped] = useState(false);
+  const [tooltip, setTooltip] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const textClass = darkMode ? "text-gray-200" : "text-gray-800";
   const flipCardClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const borderClass = darkMode ? "border-gray-900" : "border-[#efefed]";
+  const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
+
+  const handleMouseMove = (e) => {
+    setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 });
+  };
 
   return (
     <div
-      className="min-w-full h-[250px] md:h-[400px] cursor-pointer"
+      className="min-w-full h-[250px] md:h-[400px] cursor-pointer relative"
       onClick={() => setFlipped(!flipped)}
+      onMouseMove={(e) => {
+        setTooltip(true);
+        handleMouseMove(e);
+      }}
+      onMouseLeave={() => setTooltip(false)}
     >
       <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
         {/* Front Side */}
@@ -68,6 +80,17 @@ const ExperienceCard = ({ exp, darkMode }) => {
           </ul>
         </div>
       </div>
+      {tooltip && (
+        <div
+          className={`fixed z-50 pointer-events-none shadow-lg rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
+          style={{
+            top: cursorPos.y,
+            left: cursorPos.x,
+          }}
+        >
+          Click to view details
+        </div>
+      )}
     </div>
   );
 };

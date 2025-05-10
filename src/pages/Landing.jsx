@@ -209,7 +209,7 @@ const Landing = () => {
   ];
 
   const handleMouseMove = (e, src) => {
-    setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 }); // offset to avoid cursor overlap
+    setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 });
     setHoveredImage(src);
   };
 
@@ -536,19 +536,27 @@ const Landing = () => {
                     <div className={`${textClass} text-[24px] lg:[32px]`}>
                       {project.title}
                     </div>
-                    <div className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}>
+                    <div
+                      className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}
+                    >
                       {project.description}
                     </div>
-                    <div className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}>
-                    {project.type}
-                  </div>
-                  </div>
-                  <div className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}>
-                    {project.type}
-                  </div>
-                  <div className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}>
-                      {project.description}
+                    <div
+                      className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}
+                    >
+                      {project.type}
                     </div>
+                  </div>
+                  <div
+                    className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}
+                  >
+                    {project.type}
+                  </div>
+                  <div
+                    className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}
+                  >
+                    {project.description}
+                  </div>
                 </div>
                 <hr className={`${borderClass}`} />
               </div>
@@ -585,226 +593,9 @@ const Landing = () => {
               >
                 Where I Have Contributed
               </div>
-              <div className={`${textClass} text-[14px] lg:text-[16px]`}>
-                Click to flip the cards
-              </div>
-
-              {/* Bento Box */}
-              {/* <div className="w-full grid grid-cols-1 lg:grid-cols-6 lg:grid-rows-3 gap-3 lg:gap-5 rounded-md">
-                <div className="rounded-md p-5 bg-green-400 lg:bg-green-400/80 hover:bg-green-400 transition-all duration-200 flex flex-col justify-center items-center">
-                  <div className="text-[40px]">4+</div>
-                  <div className="text-[20px]">Years of experience</div>
-                </div>
-                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
-                  <div className="flex flex-col items-center justify-around gap-5">
-                    <img
-                      src="/gear.png"
-                      alt="gear"
-                      className="w-10 h-10 animate-spin"
-                    />
-                    <div className="text-gray-800 text-[20px]">
-                      Problem Solver
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-2 rounded-md p-5 bg-blue-400 lg:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
-                  <img src="/shaped.svg" alt="shaped" className="h-6" />
-                  <div className="text-[32px]">Software Engineer</div>
-                  <div className="text-[16px]">April 2023 - March 2024</div>
-                </div>
-
-                <div className="col-span-1 row-span-3 rounded-md p-5 bg-[#efefed] lg:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
-                  <div>Specialized Excellence</div>
-                  <div className="grid grid-cols-5 lg:grid-cols-2 gap-5">
-                    <img
-                      src="/expressjs.png"
-                      alt="expressjs"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/tailwind.png"
-                      alt="tailwind"
-                      className="h-7 mx-auto my-auto"
-                    />
-                    <img
-                      src="/nextjs.png"
-                      alt="next"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/git.png"
-                      alt="git"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/ts.png"
-                      alt="typescript"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/nodejs.png"
-                      alt="node"
-                      className="h-6 mx-auto my-auto"
-                    />
-                    <img
-                      src="/fastapi.svg"
-                      alt="fastapi"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/react.png"
-                      alt="react"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/python.svg"
-                      alt="python"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/postgres.png"
-                      alt="postgres"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/js.png"
-                      alt="javascript"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/django.svg"
-                      alt="django"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/mongodb.png"
-                      alt="mongodb"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/mysql.svg"
-                      alt="mysql"
-                      className="h-12 mx-auto my-auto"
-                    />
-                  </div>
-                </div>
-                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
-                  <div className="flex flex-col items-center justify-around gap-5">
-                    <img
-                      src="/idea.png"
-                      alt="idea"
-                      className="w-10 h-10 animate-pulse"
-                    />
-                    <div className="text-gray-800 text-[20px]">
-                      Critical Thinker
-                    </div>
-                  </div>
-                </div>
-                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
-                  <div className="flex flex-col gap-5 items-center justify-around">
-                    <img
-                      src="/detail.png"
-                      alt="detail"
-                      className="w-10 h-10 animate-pulse"
-                    />
-                    <div className="text-gray-800 text-[20px]">
-                      Detail-Oriented
-                    </div>
-                  </div>
-                </div>
-                <div className="lg:col-span-2 rounded-md p-5 bg-yellow-400 lg:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
-                  <div className="flex gap-2 items-center">
-                    <img src="/medal.png" alt="medal" className="h-7" />
-                    <div className="text-[24px]">Finalist</div>
-                  </div>
-                  <div className="text-[32px]">ITVerse 2023</div>
-                  <div className="text-[16px]">IIT, DU</div>
-                </div>
-                <div className="rounded-md p-5 bg-purple-400 lg:bg-purple-400/80 hover:bg-purple-400 transition-all duration-200 flex flex-col justify-center">
-                  <div className="flex flex-col gap-5 items-center justify-around">
-                    <img
-                      src="/hourglass.png"
-                      alt="hourglass"
-                      className="w-8 h-8 animate-spin"
-                    />
-                    <div className="text-gray-800 text-[20px]">
-                      Deadline-Driven
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 row-span-2 rounded-md p-5 bg-[#efefed] lg:bg-[#efefed]/80 hover:bg-[#efefed] transition-all duration-200 flex flex-col justify-around items-center gap-3">
-                  <div>Growing Competence</div>
-                  <div className="grid grid-cols-5 lg:grid-cols-2 gap-5">
-                    <img
-                      src="/docker.webp"
-                      alt="docker"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/cpp.png"
-                      alt="cpp"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/java.webp"
-                      alt="java"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/oracle.png"
-                      alt="oracle"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/sass.png"
-                      alt="sass"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/firebase.png"
-                      alt="firebase"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/figma.png"
-                      alt="figma"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/illustrator.png"
-                      alt="illustrator"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/photoshop.png"
-                      alt="photoshop"
-                      className="h-10 mx-auto my-auto"
-                    />
-                    <img
-                      src="/kubernetes.png"
-                      alt="kubernetes"
-                      className="h-10 mx-auto my-auto"
-                    />
-                  </div>
-                </div>
-                <div className="lg:col-span-2 rounded-md p-5 bg-yellow-400 lg:bg-yellow-400/80 hover:bg-yellow-400 transition-all duration-200 flex flex-col justify-around items-center">
-                  <div className="flex gap-2 items-center">
-                    <img src="/medal.png" alt="medal" className="h-7" />
-                    <div className="text-[24px]">Finalist</div>
-                  </div>
-                  <div className="text-[32px]">Code Samurai 2024</div>
-                  <div className="text-[16px]">CSE, DU</div>
-                </div>
-                <div className="lg:col-span-2 rounded-md p-5 bg-blue-400 lg:bg-blue-400/80 hover:bg-blue-400 transition-all duration-200 flex flex-col justify-around items-center text-gray-800">
-                  <img src="/zoopsign.svg" alt="shaped" className="h-6" />
-                  <div className="text-[32px]">Full Stack Developer</div>
-                  <div className="text-[16px]">June 2022 - March 2023</div>
-                </div>
-              </div> */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
                 {experiences.map((exp, idx) => (
-                  <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
+                    <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
                 ))}
               </div>
             </div>
