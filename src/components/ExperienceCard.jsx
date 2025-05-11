@@ -82,7 +82,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
       </div>
       {tooltip && (
         <div
-          className={`fixed z-50 pointer-events-none shadow-lg rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
+          className={`fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
           style={{
             top: cursorPos.y,
             left: cursorPos.x,

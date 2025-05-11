@@ -86,62 +86,62 @@ const Landing = () => {
     {
       title: "Figma",
       image: "/figma.png",
-      desc: "Designs that click.",
+      desc: "Since 2022",
     },
     {
       title: "Typescript",
       image: "/ts.png",
-      desc: "Javascript but better.",
+      desc: "Since 2023",
     },
     {
       title: "React",
       image: "/react.png",
-      desc: "JSX and chill.",
+      desc: "Since 2022",
     },
     {
       title: "Next.js",
       image: "/nextjs.png",
-      desc: "React with superpowers.",
+      desc: "Since 2023",
     },
     {
       title: "Python",
       image: "/python.svg",
-      desc: "GOAT of programming.",
+      desc: "Since 2022",
     },
     {
       title: "FastAPI",
       image: "/fastapi.svg",
-      desc: "Fast backend magic.",
+      desc: "Since 2023",
     },
     {
       title: "Tailwind CSS",
       image: "/tailwind.png",
-      desc: "Style without the stress.",
+      desc: "Since 2022",
     },
     {
       title: "Git",
       image: "/git.png",
-      desc: "Coding time machine.",
+      desc: "Since 2022",
     },
     {
       title: "Linux",
       image: "/linux.png",
-      desc: "The best operating system.",
+      desc: "Since 2020",
     },
     {
       title: "PostgreSQL",
       image: "/postgres.png",
-      desc: "Relational database powerhouse.",
+      desc: "Since 2022",
     },
     {
       title: "Postman",
       image: "/postman.svg",
-      desc: "API testing made easy.",
+      desc: "Since 2022",
     },
     {
       title: "Photoshop",
       image: "/photoshop.png",
-      desc: "Pixel-perfect editing.",
+      desc: "Since 2017",
     },
   ];
 
@@ -215,11 +215,6 @@ const Landing = () => {
 
   const handleMouseLeave = () => {
     setHoveredImage(null);
-  };
-
-  const scrollToSection = (section) => {
-    const element = document.getElementById(section);
-    element.scrollIntoView({ behavior: "smooth" });
   };
 
   const toggleDarkMode = () => {
@@ -305,7 +300,7 @@ const Landing = () => {
             </button>
             <button
               className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} px-5 lg:px-8 py-2 lg:py-3 rounded-full duration-200 transition-all`}
-              onClick={() => window.open("/Resume__Raufun_Nazin_Srizon.pdf")}
+              onClick={() => window.open("/Resume___Raufun_Nazin_Srizon.pdf")}
             >
               View Resume
             </button>
@@ -389,13 +384,18 @@ const Landing = () => {
               <div
                 className={`${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left`}
               >
-                Software Engineer · Full Stack
+                Software Engineer · Full Stack · 4 YoE · Bangladesh
               </div>
               <button
                 className={`px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0`}
-                onClick={() => scrollToSection("contact-section")}
+                onClick={() => {
+                  navigator.clipboard
+                    .writeText("raufun.nazin13@gmail.com")
+                    .then(() => toast.info("Email copied to clipboard!"))
+                    .catch(() => toast.error("Failed to copy email!"));
+                }}
               >
-                Get in Touch
+                Copy Email
               </button>
             </div>
           </div>
@@ -595,7 +595,7 @@ const Landing = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
                 {experiences.map((exp, idx) => (
-                    <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
+                  <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
                 ))}
               </div>
             </div>
@@ -627,7 +627,7 @@ const Landing = () => {
                 Get in Touch
               </div>
               <div className="flex flex-col md:flex-row justify-around w-full items-center gap-10">
-                <div className="flex flex-col md:flex-row justify-between md:items-center w-full gap-3 md:gap-0">
+                <div className="flex flex-col md:flex-row justify-around md:items-center w-full gap-3 md:gap-0">
                   <div
                     className="flex gap-3 items-center cursor-pointer w-fit"
                     onClick={() => {
