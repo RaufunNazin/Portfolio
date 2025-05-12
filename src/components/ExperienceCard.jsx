@@ -9,6 +9,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
   const flipCardClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const borderClass = darkMode ? "border-gray-900" : "border-[#efefed]";
   const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
+  const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
 
   const handleMouseMove = (e) => {
     setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 });
@@ -27,7 +28,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
       <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
         {/* Front Side */}
         <div
-          className={`flip-card-front flex flex-col justify-around p-6 rounded-md border-2 text-gray-900 border-gray-400`}
+          className={`flip-card-front flex flex-col justify-around p-5 rounded-md border-2 text-gray-900 border-gray-400`}
         >
           <img
             src={exp.image}
@@ -59,25 +60,33 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
         {/* Back Side */}
         <div
-          className={`flip-card-back flex flex-col justify-around p-6 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto`}
+          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto`}
         >
-          <img
-            src={exp.image}
-            alt={exp.company}
-            className={`w-fit ${
-              exp.company == "Amicsoft" ? "h-7" : "h-8"
-            } mb-4`}
-          />
-          <h3 className={`${textClass} text-[20px] lg:text-[28px]`}>
-            {exp.title}
-          </h3>
-          <ul
-            className={`${textClass} list-disc pl-5 text-[12px] lg:text-[16px] space-y-1`}
-          >
-            {exp.details.map((point, idx) => (
-              <li key={idx}>{point}</li>
-            ))}
-          </ul>
+          <div>
+            <div className={`mt-2 -mb-2 font-bold ${textClass}`}>
+              What I did
+            </div>
+            <ul
+              className={`${textClass} list-disc pl-5 text-[12px] lg:text-[16px]`}
+            >
+              {exp.details.map((point, idx) => (
+                <li key={idx}>{point}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className={`mt-2 font-bold ${textClass}`}>What I learned</div>
+            <div className="flex md:flex-row w-full items-center gap-2 flex-wrap">
+              {exp.tech.map((tech, idx) => (
+                <div
+                  key={idx}
+                  className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px]`}
+                >
+                  {tech}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
       {tooltip && (

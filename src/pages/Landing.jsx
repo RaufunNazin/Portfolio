@@ -51,6 +51,14 @@ const Landing = () => {
       type: "Portfolio",
       description:
         "A photography and videography company specializing in food photography, as well as product and event photography.",
+      tech: [
+        "React",
+        "FastAPI",
+        "MySQL",
+        "Tailwind CSS",
+        "SQLAlchemy",
+        "Docker",
+      ],
     },
     {
       src: "/ukway.png",
@@ -58,6 +66,15 @@ const Landing = () => {
       type: "Consultancy",
       description:
         "An education consultancy guiding students to apply to various universities across the UK.",
+      tech: [
+        "Next.js",
+        "Typescript",
+        "FastAPI",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "SaaS",
+        "Docker",
+      ],
     },
     {
       src: "/msadmission.png",
@@ -65,6 +82,7 @@ const Landing = () => {
       type: "Admission Portal",
       description:
         "Official admission portal for MS students of the Department of CSE, University of Dhaka.",
+      tech: ["React", "PHP", "Oracle", "Tailwind CSS", "RTL"],
     },
     {
       src: "/pmics.png",
@@ -72,6 +90,7 @@ const Landing = () => {
       type: "Admission Portal",
       description:
         "Admission portal for PMICS master's program students of the Department of CSE, University of Dhaka.",
+      tech: ["React", "PHP", "Oracle", "Tailwind CSS", "RTL"],
     },
     {
       src: "/swadeshfood.png",
@@ -79,6 +98,14 @@ const Landing = () => {
       type: "E-Commerce",
       description:
         "An agro-farm company focused on producing and delivering fresh farm products directly to consumers.",
+      tech: [
+        "React",
+        "FastAPI",
+        "MySQL",
+        "Tailwind CSS",
+        "SQLAlchemy",
+        "Docker",
+      ],
     },
   ];
 
@@ -159,6 +186,7 @@ const Landing = () => {
         "Designing scalable frontend and backend systems.",
         "Collaborating with network engineers to optimize real-time monitoring.",
       ],
+      tech:["React", "FastAPI", "Python", "Typescript", "Oracle", "SNMP", "Docker", "Linux"],
       isCurrent: true,
     },
     {
@@ -174,6 +202,7 @@ const Landing = () => {
         "Enabled zooming, panning, and full interactivity.",
         "Helped users understand the impact of ML recommendations.",
       ],
+      tech:["Next.js", "Express.js", "Typescript", "Node.js", "AWS EC2", "Jenkins", "VisX", "Chart.js", "SVG", "Recharts"],
       isCurrent: false,
     },
     {
@@ -189,6 +218,7 @@ const Landing = () => {
         "Used refs to handle dynamic positioning and transformations.",
         "Contributed to core features now part of the premium plan.",
       ],
+      tech:["Next.js", "Express.js", "Typescript", "Node.js", "SVG", "Github Actions"],
       isCurrent: false,
     },
     {
@@ -204,6 +234,7 @@ const Landing = () => {
         "Observed software lifecycles and sprint planning.",
         "First exposure to real-world collaboration and QA testing.",
       ],
+      tech: ["React", "Next.js", "Express.js", "Node.js", "Typescript", "MySQL"],
       isCurrent: false,
     },
   ];
@@ -476,14 +507,15 @@ const Landing = () => {
           >
             What I've Built So Far
           </div>
-          <div className="flex flex-col w-full relative">
+          <div className="flex flex-col w-full relative gap-5 lg:gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
                 onMouseMove={(e) => handleMouseMove(e, project.src)}
                 onMouseLeave={handleMouseLeave}
+                className="flex flex-col gap-2 lg:gap-4 w-full"
               >
-                <div className="flex flex-col md:flex-row w-full justify-between md:items-center py-5 lg:py-8 gap-2 md:gap-0">
+                <div className="flex flex-col md:flex-row w-full justify-between md:items-center gap-2 md:gap-0">
                   <div className="flex flex-col justify-between items-start">
                     <div className={`${textClass} text-[24px] lg:[32px]`}>
                       {project.title}
@@ -510,6 +542,17 @@ const Landing = () => {
                     {project.description}
                   </div>
                 </div>
+                <div className="flex md:flex-row w-full items-center gap-2 flex-wrap">
+                  {project.tech.map((tech, idx) => (
+                    <div
+                      key={idx}
+                      className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px]`}
+                    >
+                      {tech}
+                    </div>
+                  ))}
+                </div>
+
                 <hr className={`${borderClass}`} />
               </div>
             ))}
