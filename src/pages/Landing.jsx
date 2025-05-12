@@ -244,23 +244,6 @@ const Landing = () => {
     checkDarkMode();
   }, []);
 
-  useEffect(() => {
-    const projectSection = document.getElementById("slider-section");
-    if (!projectSection) return;
-
-    const handleScroll = () => {
-      const rect = projectSection.getBoundingClientRect();
-      if (rect.top <= window.innerHeight - 100 && rect.bottom >= 0) {
-        projectSection.classList.add("show"); // Trigger the animation
-        window.removeEventListener("scroll", handleScroll); // Remove the event listener once triggered
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className={`h-full ${mainBgClass} overflow-x-hidden`}>
       <div className="w-full mx-auto lg:px-0">
@@ -493,37 +476,6 @@ const Landing = () => {
           >
             What I've Built So Far
           </div>
-          {/* <div
-            className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 fade-in-up"
-            id="slider-section"
-          >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className={`pb-5 lg:pb-8 ${
-                  project.title === "Snapgenix" ? "lg:col-span-2" : ""
-                }`}
-              >
-                <div className="flex flex-col justify-start gap-3">
-                  <img
-                    src={project.src}
-                    alt={project.title}
-                    className="w-full h-full object-cover rounded-md"
-                  />
-                  <div
-                    className={`${textClass} text-[20px] lg:text-[24px] underline-button`}
-                  >
-                    {project.title}
-                  </div>
-                  <div
-                    className={`${textClass} text-[14px] lg:text-[16px] -mt-3`}
-                  >
-                    {project.description}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
           <div className="flex flex-col w-full relative">
             {projects.map((project, index) => (
               <div
@@ -564,7 +516,7 @@ const Landing = () => {
 
             {hoveredImage && (
               <div
-                className="fixed z-50 pointer-events-none shadow-lg border rounded-md"
+                className="fixed z-50 pointer-events-none rounded-md"
                 style={{
                   top: cursorPos.y,
                   left: cursorPos.x,
@@ -575,7 +527,7 @@ const Landing = () => {
                 <img
                   src={hoveredImage}
                   alt="preview"
-                  className="w-full h-auto rounded"
+                  className="w-full h-auto rounded-md border shadow-lg"
                 />
               </div>
             )}
