@@ -17,7 +17,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
   return (
     <div
-      className="min-w-full h-[250px] md:h-[400px] cursor-pointer relative"
+      className="min-w-full h-[280px] md:h-[400px] cursor-pointer relative"
       onClick={() => setFlipped(!flipped)}
       onMouseMove={(e) => {
         setTooltip(true);
@@ -28,14 +28,14 @@ const ExperienceCard = ({ exp, darkMode }) => {
       <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
         {/* Front Side */}
         <div
-          className={`flip-card-front flex flex-col justify-around p-5 rounded-md border-2 text-gray-900 border-gray-400`}
+          className={`flip-card-front flex flex-col justify-between p-5 rounded-md border-2 text-gray-900 border-gray-400`}
         >
           <img
             src={exp.image}
             alt={exp.company}
             className={`w-fit ${
               exp.company == "Amicsoft" ? "h-7" : "h-8"
-            } mb-4`}
+            }`}
           />
           <div>
             <h3 className={`${textClass} text-[24px] lg:text-[32px]`}>
@@ -53,9 +53,16 @@ const ExperienceCard = ({ exp, darkMode }) => {
               {exp.type}
             </p>
           </div>
-          <p className={`${textClass} mt-4 text-[12px] lg:text-[16px]`}>
+          <div className={`${textClass} text-[12px] lg:text-[16px]`}>
             {exp.summary}
-          </p>
+          </div>
+          <div className="flex w-full justify-end">
+            <p
+              className={`lg:hidden ${mainBgClass} ${textClass} rounded-full px-3`}
+            >
+              Tap to flip
+            </p>
+          </div>
         </div>
 
         {/* Back Side */}
@@ -91,7 +98,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
       </div>
       {tooltip && (
         <div
-          className={`fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
+          className={`hidden lg:block fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
           style={{
             top: cursorPos.y,
             left: cursorPos.x,

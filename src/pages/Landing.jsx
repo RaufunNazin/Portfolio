@@ -10,6 +10,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import SnakeGame from "../components/SnakeGame";
 import { FaMoon, FaSun } from "react-icons/fa";
 import ExperienceCard from "../components/ExperienceCard";
+import { FaRegCopy } from "react-icons/fa6";
 
 const Landing = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,6 +21,7 @@ const Landing = () => {
   // Classes that change based on dark mode
   const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
+  const expertiseClass = darkMode ? "bg-gray-800 hover:bg-gray-800/50" : "bg-white hpver:bg-white/50";
   const textClass = darkMode ? "text-gray-200" : "text-gray-800";
   const buttonBgClass = darkMode
     ? "bg-gray-700 hover:bg-gray-600"
@@ -31,7 +33,7 @@ const Landing = () => {
   const buttonFixedTextClass = darkMode ? "text-gray-200" : "text-gray-800";
   const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
-  const contactBgClass = darkMode ? "bg-gray-800" : "lg:bg-white";
+  const contactBgClass = darkMode ? "bg-gray-800" : "bg-white";
   const underlineButtonClass = darkMode
     ? "underline-button-dark"
     : "underline-button-light";
@@ -131,6 +133,11 @@ const Landing = () => {
       desc: "Since 2023",
     },
     {
+      title: "Tailwind",
+      image: "/tailwind.png",
+      desc: "Since 2022",
+    },
+    {
       title: "Python",
       image: "/python.svg",
       desc: "Since 2022",
@@ -141,8 +148,8 @@ const Landing = () => {
       desc: "Since 2023",
     },
     {
-      title: "Tailwind CSS",
-      image: "/tailwind.png",
+      title: "MongoDB",
+      image: "/mongodb.png",
       desc: "Since 2022",
     },
     {
@@ -151,19 +158,14 @@ const Landing = () => {
       desc: "Since 2022",
     },
     {
+      title: "Docker",
+      image: "/docker.webp",
+      desc: "Since 2022",
+    },
+    {
       title: "Linux",
       image: "/linux.png",
       desc: "Since 2020",
-    },
-    {
-      title: "PostgreSQL",
-      image: "/postgres.png",
-      desc: "Since 2022",
-    },
-    {
-      title: "Postman",
-      image: "/postman.svg",
-      desc: "Since 2022",
     },
     {
       title: "Photoshop",
@@ -186,7 +188,16 @@ const Landing = () => {
         "Designing scalable frontend and backend systems.",
         "Collaborating with network engineers to optimize real-time monitoring.",
       ],
-      tech:["React", "FastAPI", "Python", "Typescript", "Oracle", "SNMP", "Docker", "Linux"],
+      tech: [
+        "React",
+        "FastAPI",
+        "Python",
+        "Typescript",
+        "Oracle",
+        "SNMP",
+        "Docker",
+        "Linux",
+      ],
       isCurrent: true,
     },
     {
@@ -202,7 +213,18 @@ const Landing = () => {
         "Enabled zooming, panning, and full interactivity.",
         "Helped users understand the impact of ML recommendations.",
       ],
-      tech:["Next.js", "Express.js", "Typescript", "Node.js", "AWS EC2", "Jenkins", "VisX", "Chart.js", "SVG", "Recharts"],
+      tech: [
+        "Next.js",
+        "Express.js",
+        "Typescript",
+        "Node.js",
+        "AWS EC2",
+        "Jenkins",
+        "VisX",
+        "Chart.js",
+        "SVG",
+        "Recharts",
+      ],
       isCurrent: false,
     },
     {
@@ -218,7 +240,14 @@ const Landing = () => {
         "Used refs to handle dynamic positioning and transformations.",
         "Contributed to core features now part of the premium plan.",
       ],
-      tech:["Next.js", "Express.js", "Typescript", "Node.js", "SVG", "Github Actions"],
+      tech: [
+        "Next.js",
+        "Express.js",
+        "Typescript",
+        "Node.js",
+        "SVG",
+        "Github Actions",
+      ],
       isCurrent: false,
     },
     {
@@ -234,7 +263,14 @@ const Landing = () => {
         "Observed software lifecycles and sprint planning.",
         "First exposure to real-world collaboration and QA testing.",
       ],
-      tech: ["React", "Next.js", "Express.js", "Node.js", "Typescript", "MySQL"],
+      tech: [
+        "React",
+        "Next.js",
+        "Express.js",
+        "Node.js",
+        "Typescript",
+        "MySQL",
+      ],
       isCurrent: false,
     },
   ];
@@ -289,27 +325,27 @@ const Landing = () => {
           </div>
           {showButton && (
             <button
-              className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} py-4 px-4 rounded-full duration-200 transition-all flex items-center justify-center z-50`}
+              className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} p-2 lg:p-4 rounded-full duration-200 transition-all flex items-center justify-center z-50 hover:-rotate-45`}
               onClick={toggleDarkMode}
               aria-label="Toggle dark mode"
             >
               {darkMode ? (
-                <FaSun className="h-5 w-5" />
+                <FaSun className="h-3 lg:h-5 w-3 lg:w-5" />
               ) : (
-                <FaMoon className="h-5 w-5" />
+                <FaMoon className="h-3 lg:h-5 w-3 lg:w-5" />
               )}
             </button>
           )}
-          <div className="flex gap-3">
+          <div className="flex gap-3 items-center">
             <button
-              className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} py-2 px-4 rounded-full duration-200 transition-all flex items-center justify-center`}
+              className={`h-fit cursor-pointer ${buttonBgClass} ${buttonTextClass} p-4 rounded-full duration-200 transition-all flex items-center justify-center hover:-rotate-45`}
               onClick={toggleDarkMode}
               aria-label="Toggle dark mode"
             >
               {darkMode ? (
-                <FaSun className="h-5 w-5" />
+                <FaSun className="h-4 w-4" />
               ) : (
-                <FaMoon className="h-5 w-5" />
+                <FaMoon className="h-4 w-4" />
               )}
             </button>
             <button
@@ -384,24 +420,23 @@ const Landing = () => {
                 <div
                   className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left`}
                 >
-                  Hello, I'm{" "}
-                  <span className="font-medium">Raufun Nazin Srizon</span>
+                  Hello, I'm
                 </div>
                 <div
                   className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal`}
                 >
-                  I Transform Ideas Into
-                  <br />
-                  Digital Solutions
+                  Raufun Nazin Srizon
                 </div>
               </div>
               <div
-                className={`${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left`}
+                className={`flex flex-col items-center md:flex-row gap-x-2 ${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left`}
               >
-                Software Engineer · Full Stack · 4 YoE · Bangladesh
+                <span>Software Engineer | Full Stack</span>
+                <span className="hidden md:inline">|</span>
+                <span>4 YoE | Bangladesh</span>
               </div>
               <button
-                className={`px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0`}
+                className={`flex items-center gap-2 px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0`}
                 onClick={() => {
                   navigator.clipboard
                     .writeText("raufun.nazin13@gmail.com")
@@ -409,7 +444,8 @@ const Landing = () => {
                     .catch(() => toast.error("Failed to copy email!"));
                 }}
               >
-                Copy Email
+                <FaRegCopy className={`${textClass}text-sm -mt-0.5`} />
+                <span>Email</span>
               </button>
             </div>
           </div>
@@ -441,12 +477,12 @@ const Landing = () => {
                   <img
                     src={darkMode ? "zoopsign-white.svg" : "/zoopsign.svg"}
                     alt="Zoopsign"
-                    className="h-6 lg:h-7 mx-auto"
+                    className="h-5 lg:h-7 mx-auto"
                   />
                   <img
                     src={darkMode ? "amicsoft-white.png" : "/amicsoft.png"}
                     alt="Amicsoft"
-                    className="h-5 lg:h-6 mx-auto"
+                    className="h-4 lg:h-6 mx-auto"
                   />
                 </div>
               </div>
@@ -468,7 +504,7 @@ const Landing = () => {
               return (
                 <div
                   key={i}
-                  className={`flex items-center w-full gap-3 rounded-md ${secondaryBgClass} p-2`}
+                  className={`flex items-center w-full gap-3 rounded-md ${expertiseClass} p-2 transition-all duration-200`}
                 >
                   <div
                     className={`rounded-md ${iconClass} h-8 lg:h-12 w-8 lg:w-12 flex items-center justify-center`}
@@ -494,6 +530,26 @@ const Landing = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Experience section */}
+        <div className={mainBgClass}>
+          <div
+            className={`py-16 lg:py-52 ${secondaryBgClass} rounded-[50px] lg:rounded-[150px]`}
+          >
+            <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center">
+              <div
+                className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
+              >
+                Where I Have Contributed
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
+                {experiences.map((exp, idx) => (
+                  <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -563,37 +619,17 @@ const Landing = () => {
                 style={{
                   top: cursorPos.y,
                   left: cursorPos.x,
-                  width: "400px",
+                  width: "300px",
                   backgroundColor: "white",
                 }}
               >
                 <img
                   src={hoveredImage}
                   alt="preview"
-                  className="w-full h-auto rounded-md border shadow-lg"
+                  className="w-full h-auto rounded-md shadow-lg"
                 />
               </div>
             )}
-          </div>
-        </div>
-
-        {/* Skills section */}
-        <div className={mainBgClass}>
-          <div
-            className={`py-24 lg:py-52 ${secondaryBgClass} rounded-[50px] lg:rounded-[150px]`}
-          >
-            <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center">
-              <div
-                className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
-              >
-                Where I Have Contributed
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-5 w-full">
-                {experiences.map((exp, idx) => (
-                  <ExperienceCard key={idx} exp={exp} darkMode={darkMode} />
-                ))}
-              </div>
-            </div>
           </div>
         </div>
 
@@ -610,7 +646,7 @@ const Landing = () => {
         {/* Contact section */}
         <div className={mainBgClass}>
           <div
-            className={`${contactBgClass} py-12 lg:py-20 lg:rounded-t-[150px]`}
+            className={`${contactBgClass} py-8 lg:py-20 rounded-t-[50px] lg:rounded-t-[150px]`}
           >
             <div
               className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center"
