@@ -38,27 +38,27 @@ const ExperienceCard = ({ exp, darkMode }) => {
             }`}
           />
           <div>
-            <h3 className={`${textClass} text-[24px] lg:text-[32px]`}>
+            <h3 className={`${textClass} text-[24px] lg:text-[32px] duration-200 transition-all`}>
               {exp.title}
             </h3>
-            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
               {exp.company}
             </p>
           </div>
           <div>
-            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
               {exp.duration}
             </p>
-            <p className={`${textClass} text-[16px] lg:text-[20px]`}>
+            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
               {exp.type}
             </p>
           </div>
-          <div className={`${textClass} text-[12px] lg:text-[16px]`}>
+          <div className={`${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}>
             {exp.summary}
           </div>
           <div className="flex w-full justify-end">
             <p
-              className={`lg:hidden ${mainBgClass} ${textClass} rounded-full px-3`}
+              className={`lg:hidden ${mainBgClass} ${textClass} rounded-full px-3 duration-200 transition-all`}
             >
               Tap to flip
             </p>
@@ -67,14 +67,14 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
         {/* Back Side */}
         <div
-          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto`}
+          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto duration-200 transition-all`}
         >
           <div>
-            <div className={`mt-2 -mb-2 font-bold ${textClass}`}>
+            <div className={`mt-2 -mb-2 font-bold ${textClass} duration-200 transition-all`}>
               What I did
             </div>
             <ul
-              className={`${textClass} list-disc pl-5 text-[12px] lg:text-[16px]`}
+              className={`${textClass} list-disc pl-5 text-[12px] lg:text-[16px] duration-200 transition-all`}
             >
               {exp.details.map((point, idx) => (
                 <li key={idx}>{point}</li>
@@ -82,12 +82,12 @@ const ExperienceCard = ({ exp, darkMode }) => {
             </ul>
           </div>
           <div>
-            <div className={`mt-2 font-bold ${textClass}`}>What I learned</div>
+            <div className={`mt-2 font-bold ${textClass} duration-200 transition-all`}>What I learned</div>
             <div className="flex md:flex-row w-full items-center gap-2 flex-wrap">
               {exp.tech.map((tech, idx) => (
                 <div
                   key={idx}
-                  className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px]`}
+                  className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px] duration-200 transition-all`}
                 >
                   {tech}
                 </div>
@@ -98,7 +98,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
       </div>
       {tooltip && (
         <div
-          className={`hidden lg:block fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass}`}
+          className={`hidden lg:block fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass} duration-200 transition-all`}
           style={{
             top: cursorPos.y,
             left: cursorPos.x,

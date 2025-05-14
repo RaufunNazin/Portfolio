@@ -21,7 +21,9 @@ const Landing = () => {
   // Classes that change based on dark mode
   const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
   const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
-  const expertiseClass = darkMode ? "bg-gray-800 hover:bg-gray-800/50" : "bg-white hpver:bg-white/50";
+  const expertiseClass = darkMode
+    ? "bg-gray-800 hover:bg-gray-800/50"
+    : "bg-white hpver:bg-white/50";
   const textClass = darkMode ? "text-gray-200" : "text-gray-800";
   const buttonBgClass = darkMode
     ? "bg-gray-700 hover:bg-gray-600"
@@ -312,53 +314,10 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className={`h-full ${mainBgClass} overflow-x-hidden`}>
+    <div className={`h-full ${`${mainBgClass}  duration-200 transition-all`} overflow-x-hidden duration-200 transition-all`}>
       <div className="w-full mx-auto lg:px-0">
-        {/* Navbar */}
-        <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-5">
-          <div>
-            <img
-              src={darkMode ? "signature.png" : "/signature-white.png"}
-              alt="signature"
-              className="h-8"
-            />
-          </div>
-          {showButton && (
-            <button
-              className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} p-2 lg:p-4 rounded-full duration-200 transition-all flex items-center justify-center z-50 hover:-rotate-45`}
-              onClick={toggleDarkMode}
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? (
-                <FaSun className="h-3 lg:h-5 w-3 lg:w-5" />
-              ) : (
-                <FaMoon className="h-3 lg:h-5 w-3 lg:w-5" />
-              )}
-            </button>
-          )}
-          <div className="flex gap-3 items-center">
-            <button
-              className={`h-fit cursor-pointer ${buttonBgClass} ${buttonTextClass} p-4 rounded-full duration-200 transition-all flex items-center justify-center hover:-rotate-45`}
-              onClick={toggleDarkMode}
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? (
-                <FaSun className="h-4 w-4" />
-              ) : (
-                <FaMoon className="h-4 w-4" />
-              )}
-            </button>
-            <button
-              className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} px-5 lg:px-8 py-2 lg:py-3 rounded-full duration-200 transition-all`}
-              onClick={() => window.open("/Resume___Raufun_Nazin_Srizon.pdf")}
-            >
-              View Resume
-            </button>
-          </div>
-        </div>
-
         {/* Social Links */}
-        <div className="fixed left-0 top-1/2 -translate-y-1/2 flex flex-col rounded-r-lg overflow-hidden shadow-lg z-50">
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col rounded-l-lg overflow-hidden shadow-lg z-50">
           <button
             className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
             onClick={() => {
@@ -369,7 +328,7 @@ const Landing = () => {
             }}
           >
             <BiLogoGmail
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
             />
           </button>
           <button
@@ -379,7 +338,7 @@ const Landing = () => {
             }
           >
             <FaLinkedinIn
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
             />
           </button>
           <button
@@ -387,7 +346,7 @@ const Landing = () => {
             onClick={() => window.open("https://www.github.com/RaufunNazin")}
           >
             <FaGithub
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
             />
           </button>
           <button
@@ -395,7 +354,7 @@ const Landing = () => {
             onClick={() => window.open("https://wa.me/8801682386618")}
           >
             <FaWhatsapp
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
             />
           </button>
           <button
@@ -403,40 +362,84 @@ const Landing = () => {
             onClick={() => window.open("https://www.facebook.com/srizon13")}
           >
             <FaFacebookF
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5`}
+              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
             />
           </button>
         </div>
-
-        {/* Hero section */}
-        <div className={secondaryBgClass}>
-          <div
-            className={`py-24 lg:py-52 ${sectionAccentBgClass} rounded-b-[50px] lg:rounded-b-[150px]`}
+        {showButton && (
+          <button
+            className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} p-2 lg:p-4 rounded-full duration-200 transition-all flex items-center justify-center z-50 hover:-rotate-45`}
+            onClick={toggleDarkMode}
+            aria-label="Toggle dark mode"
           >
+            {darkMode ? (
+              <FaSun className="h-3 lg:h-5 w-3 lg:w-5" />
+            ) : (
+              <FaMoon className="h-3 lg:h-5 w-3 lg:w-5" />
+            )}
+          </button>
+        )}
+        {/* Hero section */}
+        <div className={`${secondaryBgClass} p-2 lg:p-5 duration-200 transition-all`}>
+          <div
+            className={`py-24 lg:py-52 ${sectionAccentBgClass} rounded-[20px] lg:rounded-[50px] relative duration-200 transition-all`}
+          >
+            {/* Navbar */}
+            <div className="absolute top-0 lg:top-5 left-1/2 -translate-x-1/2 px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-3 lg:py-5">
+              <div>
+                <img
+                  src={darkMode ? "signature.png" : "/signature-white.png"}
+                  alt="signature"
+                  className="h-8"
+                />
+              </div>
+
+              <div className="flex gap-3 items-center">
+                <button
+                  className={`h-fit cursor-pointer ${buttonBgClass} ${buttonTextClass} p-4 rounded-full duration-200 transition-all flex items-center justify-center hover:-rotate-45`}
+                  onClick={toggleDarkMode}
+                  aria-label="Toggle dark mode"
+                >
+                  {darkMode ? (
+                    <FaSun className="h-4 w-4" />
+                  ) : (
+                    <FaMoon className="h-4 w-4" />
+                  )}
+                </button>
+                <button
+                  className={`cursor-pointer ${buttonBgClass} ${buttonTextClass} px-5 lg:px-8 py-2 lg:py-3 rounded-full duration-200 transition-all`}
+                  onClick={() =>
+                    window.open("/Resume___Raufun_Nazin_Srizon.pdf")
+                  }
+                >
+                  View Resume
+                </button>
+              </div>
+            </div>
             <div
-              className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-8 lg:gap-5 lg:border-r-4 ${borderClass}`}
+              className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-12 lg:gap-16 ${borderClass} duration-200 transition-all`}
             >
-              <div className={`font-bold ${textClass} -mb-8`}>
+              <div className={`font-bold ${textClass} -mb-8 duration-200 transition-all`}>
                 <div
-                  className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left`}
+                  className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left duration-200 transition-all`}
                 >
                   Hello, I'm
                 </div>
                 <div
-                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal`}
+                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal duration-200 transition-all`}
                 >
                   Raufun Nazin Srizon
                 </div>
               </div>
               <div
-                className={`flex flex-col items-center md:flex-row gap-x-2 ${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left`}
+                className={`flex flex-col items-center md:flex-row gap-x-2 ${underlineButtonClass} text-[20px] lg:text-[32px] fade-in-text underline-button w-fit text-center lg:text-left duration-200 transition-all`}
               >
                 <span>Software Engineer | Full Stack</span>
                 <span className="hidden md:inline">|</span>
                 <span>4 YoE | Bangladesh</span>
               </div>
               <button
-                className={`flex items-center gap-2 px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0`}
+                className={`flex items-center gap-2 px-5 lg:px-8 py-2 lg:py-3 rounded-full ${buttonTextClass} ${buttonBgClass} cursor-pointer w-fit fade-in-text -mt-3 lg:-mt-0 duration-200 transition-all`}
                 onClick={() => {
                   navigator.clipboard
                     .writeText("raufun.nazin13@gmail.com")
@@ -444,7 +447,7 @@ const Landing = () => {
                     .catch(() => toast.error("Failed to copy email!"));
                 }}
               >
-                <FaRegCopy className={`${textClass}text-sm -mt-0.5`} />
+                <FaRegCopy className={`${textClass}text-sm -mt-0.5 duration-200 transition-all`} />
                 <span>Email</span>
               </button>
             </div>
@@ -452,13 +455,13 @@ const Landing = () => {
         </div>
 
         {/* Companies section */}
-        <div className={mainBgClass}>
+        <div className={`${mainBgClass}  duration-200 transition-all`}>
           <div
-            className={`py-12 lg:py-24 ${secondaryBgClass} rounded-b-[50px] lg:rounded-b-[150px]`}
+            className={`py-12 lg:py-24 ${secondaryBgClass} rounded-b-[20px] lg:rounded-b-[50px] duration-200 transition-all`}
           >
             <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center gap-5 lg:gap-10 fade-in-text">
               <div
-                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
+                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px] duration-200 transition-all`}
               >
                 Trusted by
               </div>
@@ -467,22 +470,22 @@ const Landing = () => {
                   <img
                     src={darkMode ? "maestro-white.png" : "/maestro.png"}
                     alt="Maestro Solutions"
-                    className="h-5 lg:h-7 mx-auto"
+                    className="h-5 lg:h-7 mx-auto duration-200 transition-all"
                   />
                   <img
                     src={darkMode ? "shaped-white.svg" : "/shaped.svg"}
                     alt="Shaped.ai"
-                    className="h-6 lg:h-9 mx-auto"
+                    className="h-6 lg:h-9 mx-auto duration-200 transition-all"
                   />
                   <img
                     src={darkMode ? "zoopsign-white.svg" : "/zoopsign.svg"}
                     alt="Zoopsign"
-                    className="h-5 lg:h-7 mx-auto"
+                    className="h-5 lg:h-7 mx-auto duration-200 transition-all"
                   />
                   <img
                     src={darkMode ? "amicsoft-white.png" : "/amicsoft.png"}
                     alt="Amicsoft"
-                    className="h-4 lg:h-6 mx-auto"
+                    className="h-4 lg:h-6 mx-auto duration-200 transition-all"
                   />
                 </div>
               </div>
@@ -495,7 +498,7 @@ const Landing = () => {
           className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 my-24 lg:my-52 items-center justify-center`}
         >
           <div
-            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
+            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px] duration-200 transition-all`}
           >
             What I Am Experienced In
           </div>
@@ -507,7 +510,7 @@ const Landing = () => {
                   className={`flex items-center w-full gap-3 rounded-md ${expertiseClass} p-2 transition-all duration-200`}
                 >
                   <div
-                    className={`rounded-md ${iconClass} h-8 lg:h-12 w-8 lg:w-12 flex items-center justify-center`}
+                    className={`rounded-md ${iconClass} h-8 lg:h-12 w-8 lg:w-12 flex items-center justify-center duration-200 transition-all`}
                   >
                     <img
                       src={item.image}
@@ -517,12 +520,12 @@ const Landing = () => {
                   </div>
                   <div className="flex flex-col gap-1">
                     <div
-                      className={`${textClass} text-[20px] lg:text-[24px] underline-button`}
+                      className={`${textClass} text-[20px] lg:text-[24px] underline-button duration-200 transition-all`}
                     >
                       {item.title}
                     </div>
                     <div
-                      className={`${textClass} text-[14px] lg:text-[16px] -mt-3`}
+                      className={`${textClass} text-[14px] lg:text-[16px] -mt-3 duration-200 transition-all`}
                     >
                       {item.desc}
                     </div>
@@ -534,13 +537,13 @@ const Landing = () => {
         </div>
 
         {/* Experience section */}
-        <div className={mainBgClass}>
+        <div className={`${`${mainBgClass} duration-200 transition-all`} p-2 lg:p-5`}>
           <div
-            className={`py-16 lg:py-52 ${secondaryBgClass} rounded-[50px] lg:rounded-[150px]`}
+            className={`py-16 lg:py-52 ${secondaryBgClass} rounded-[20px] lg:rounded-[50px] duration-200 transition-all`}
           >
             <div className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center">
               <div
-                className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
+                className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button duration-200 transition-all`}
               >
                 Where I Have Contributed
               </div>
@@ -559,7 +562,7 @@ const Landing = () => {
           id="projects-section"
         >
           <div
-            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
+            className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px] duration-200 transition-all`}
           >
             What I've Built So Far
           </div>
@@ -573,27 +576,27 @@ const Landing = () => {
               >
                 <div className="flex flex-col md:flex-row w-full justify-between md:items-center gap-2 md:gap-0">
                   <div className="flex flex-col justify-between items-start">
-                    <div className={`${textClass} text-[24px] lg:[32px]`}>
+                    <div className={`${textClass} text-[24px] lg:[32px] duration-200 transition-all`}>
                       {project.title}
                     </div>
                     <div
-                      className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}
+                      className={`hidden md:block ${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
                     >
                       {project.description}
                     </div>
                     <div
-                      className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}
+                      className={`md:hidden ${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
                     >
                       {project.type}
                     </div>
                   </div>
                   <div
-                    className={`hidden md:block ${textClass} text-[12px] lg:text-[16px]`}
+                    className={`hidden md:block ${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
                   >
                     {project.type}
                   </div>
                   <div
-                    className={`md:hidden ${textClass} text-[12px] lg:text-[16px]`}
+                    className={`md:hidden ${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
                   >
                     {project.description}
                   </div>
@@ -602,14 +605,14 @@ const Landing = () => {
                   {project.tech.map((tech, idx) => (
                     <div
                       key={idx}
-                      className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px]`}
+                      className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px] duration-200 transition-all`}
                     >
                       {tech}
                     </div>
                   ))}
                 </div>
 
-                <hr className={`${borderClass}`} />
+                <hr className={`${borderClass} duration-200 transition-all`} />
               </div>
             ))}
 
@@ -636,7 +639,7 @@ const Landing = () => {
         {/* Snake Game */}
         <div className="hidden lg:flex flex-col gap-5 my-24 lg:my-52 items-center justify-center">
           <div
-            className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button`}
+            className={`${underlineButtonClass} text-[20px] lg:text-[32px] underline-button duration-200 transition-all`}
           >
             Bored? Try This Nostalgia!
           </div>
@@ -644,16 +647,16 @@ const Landing = () => {
         </div>
 
         {/* Contact section */}
-        <div className={mainBgClass}>
+        <div className={`${mainBgClass} duration-200 transition-all`}>
           <div
-            className={`${contactBgClass} py-8 lg:py-20 rounded-t-[50px] lg:rounded-t-[150px]`}
+            className={`${contactBgClass} py-8 lg:py-20 rounded-t-[20px] lg:rounded-t-[50px] duration-200 transition-all`}
           >
             <div
               className="px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col gap-5 items-center justify-center"
               id="contact-section"
             >
               <div
-                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px]`}
+                className={`underline-button ${underlineButtonClass} text-[20px] lg:text-[32px] duration-200 transition-all`}
               >
                 Get in Touch
               </div>
@@ -672,16 +675,16 @@ const Landing = () => {
                       <img
                         src={darkMode ? "mail-white.png" : "/mail.png"}
                         alt="email"
-                        className="h-8 lg:h-10"
+                        className="h-8 lg:h-10 duration-200 transition-all"
                       />
                     </div>
                     <div>
                       <div
-                        className={`${textClass} font-bold text-[12px] -mb-1`}
+                        className={`${textClass} font-bold text-[12px] -mb-1 duration-200 transition-all`}
                       >
                         Email Address
                       </div>
-                      <div className={textClass}>raufun.nazin13@gmail.com</div>
+                      <div className={`${textClass} duration-200 transition-all`}>raufun.nazin13@gmail.com</div>
                     </div>
                   </div>
                   <div
@@ -701,16 +704,16 @@ const Landing = () => {
                       <img
                         src={darkMode ? "call-white.png" : "/call.png"}
                         alt="phone"
-                        className="h-8 lg:h-10"
+                        className="h-8 lg:h-10 duration-200 transition-all"
                       />
                     </div>
                     <div>
                       <div
-                        className={`${textClass} font-bold text-[12px] -mb-1`}
+                        className={`${textClass} font-bold text-[12px] -mb-1 duration-200 transition-all`}
                       >
                         Phone Number
                       </div>
-                      <div className={textClass}>+880-1682-386618</div>
+                      <div className={`${textClass} duration-200 transition-all`}>+880-1682-386618</div>
                     </div>
                   </div>
                   <div className="flex gap-3 items-center">
@@ -718,16 +721,16 @@ const Landing = () => {
                       <img
                         src={darkMode ? "location-white.png" : "/location.png"}
                         alt="location"
-                        className="h-8 lg:h-10"
+                        className="h-8 lg:h-10 duration-200 transition-all"
                       />
                     </div>
                     <div>
                       <div
-                        className={`${textClass} font-bold text-[12px] -mb-1`}
+                        className={`${textClass} font-bold text-[12px] -mb-1 duration-200 transition-all`}
                       >
                         Address
                       </div>
-                      <div className={textClass}>Dhaka, Bangladesh</div>
+                      <div className={`${textClass} duration-200 transition-all`}>Dhaka, Bangladesh</div>
                     </div>
                   </div>
                 </div>
@@ -738,15 +741,15 @@ const Landing = () => {
 
         {/* Footer */}
         <div
-          className={`flex flex-col items-center justify-center ${secondaryBgClass}`}
+          className={`flex flex-col items-center justify-center ${secondaryBgClass} duration-200 transition-all`}
         >
           <hr
             className={`w-full border-2 ${
               darkMode ? "border-gray-700" : "border-[#efefed]"
-            }`}
+            } duration-200 transition-all`}
           />
           <div
-            className={`${textClass} text-[12px] lg:text-[20px] text-center py-3`}
+            className={`${textClass} text-[12px] lg:text-[20px] text-center py-3 duration-200 transition-all`}
           >
             2025 &copy; Raufun Nazin Srizon. All rights reserved.
           </div>
