@@ -382,10 +382,10 @@ const Landing = () => {
         {/* Hero section */}
         <div className={`${secondaryBgClass} p-2 lg:p-5 duration-200 transition-all`}>
           <div
-            className={`py-24 lg:py-52 ${sectionAccentBgClass} rounded-[20px] lg:rounded-[50px] relative duration-200 transition-all`}
+            className={`pt-24 pb-8 md:pt-32 md:pb-16 ${sectionAccentBgClass} rounded-[20px] lg:rounded-[50px] relative duration-200 transition-all`}
           >
             {/* Navbar */}
-            <div className="absolute top-0 lg:top-5 left-1/2 -translate-x-1/2 px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-3 lg:py-5">
+            <div className="absolute top-2 lg:top-5 left-1/2 -translate-x-1/2 px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex w-full justify-between items-center py-3 lg:py-5">
               <div>
                 <img
                   src={darkMode ? "signature.png" : "/signature-white.png"}
@@ -396,14 +396,14 @@ const Landing = () => {
 
               <div className="flex gap-3 items-center">
                 <button
-                  className={`h-fit cursor-pointer ${buttonBgClass} ${buttonTextClass} p-4 rounded-full duration-200 transition-all flex items-center justify-center hover:-rotate-45`}
+                  className={`h-fit cursor-pointer ${buttonBgClass} ${buttonTextClass} p-3.5 lg:p-4 rounded-full duration-200 transition-all flex items-center justify-center hover:-rotate-45`}
                   onClick={toggleDarkMode}
                   aria-label="Toggle dark mode"
                 >
                   {darkMode ? (
-                    <FaSun className="h-4 w-4" />
+                    <FaSun className="h-3 w-3 lg:h-4 lg:w-4" />
                   ) : (
-                    <FaMoon className="h-4 w-4" />
+                    <FaMoon className="h-3 w-3 lg:h-4 lg:w-4" />
                   )}
                 </button>
                 <button
@@ -417,7 +417,7 @@ const Landing = () => {
               </div>
             </div>
             <div
-              className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-12 lg:gap-16 ${borderClass} duration-200 transition-all`}
+              className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-10 lg:gap-8 ${borderClass} duration-200 transition-all`}
             >
               <div className={`font-bold ${textClass} -mb-8 duration-200 transition-all`}>
                 <div
@@ -426,7 +426,7 @@ const Landing = () => {
                   Hello, I'm
                 </div>
                 <div
-                  className={`${textClass} fade-in-text text-[40px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal duration-200 transition-all`}
+                  className={`${textClass} fade-in-text text-[36px] md:text-[64px] lg:text-[96px] uppercase text-center lg:text-left leading-tight font-normal duration-200 transition-all`}
                 >
                   Raufun Nazin Srizon
                 </div>
