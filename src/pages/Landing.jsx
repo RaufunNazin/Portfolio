@@ -314,73 +314,85 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className={`h-full ${`${mainBgClass}  duration-200 transition-all`} overflow-x-hidden duration-200 transition-all`}>
+    <div
+      className={`h-full ${`${mainBgClass}  duration-200 transition-all`} overflow-x-hidden duration-200 transition-all`}
+    >
       <div className="w-full mx-auto lg:px-0">
         {/* Social Links */}
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col rounded-l-lg overflow-hidden shadow-lg z-50">
-          <button
-            className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
-            onClick={() => {
-              navigator.clipboard
-                .writeText("raufun.nazin13@gmail.com")
-                .then(() => toast.info("Email copied to clipboard!"))
-                .catch(() => toast.error("Failed to copy email"));
-            }}
-          >
-            <BiLogoGmail
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
-            />
-          </button>
-          <button
-            className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
-            onClick={() =>
-              window.open("https://www.linkedin.com/in/RaufunNazin/")
-            }
-          >
-            <FaLinkedinIn
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
-            />
-          </button>
-          <button
-            className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
-            onClick={() => window.open("https://www.github.com/RaufunNazin")}
-          >
-            <FaGithub
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
-            />
-          </button>
-          <button
-            className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
-            onClick={() => window.open("https://wa.me/8801682386618")}
-          >
-            <FaWhatsapp
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
-            />
-          </button>
-          <button
-            className={`cursor-pointer ${socialButtonClass} duration-200 transition-all p-2`}
-            onClick={() => window.open("https://www.facebook.com/srizon13")}
-          >
-            <FaFacebookF
-              className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
-            />
-          </button>
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-5 z-50">
+          <div className="rounded-l-lg flex flex-col overflow-hidden shadow-lg">
+            <button
+              className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
+              onClick={() => {
+                navigator.clipboard
+                  .writeText("raufun.nazin13@gmail.com")
+                  .then(() => toast.info("Email copied to clipboard!"))
+                  .catch(() => toast.error("Failed to copy email"));
+              }}
+            >
+              <BiLogoGmail
+                className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+              />
+            </button>
+            <button
+              className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
+              onClick={() =>
+                window.open("https://www.linkedin.com/in/RaufunNazin/")
+              }
+            >
+              <FaLinkedinIn
+                className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+              />
+            </button>
+            <button
+              className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
+              onClick={() => window.open("https://www.github.com/RaufunNazin")}
+            >
+              <FaGithub
+                className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+              />
+            </button>
+            <button
+              className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} duration-200 transition-all p-2`}
+              onClick={() => window.open("https://wa.me/8801682386618")}
+            >
+              <FaWhatsapp
+                className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+              />
+            </button>
+            <button
+              className={`cursor-pointer ${socialButtonClass} duration-200 transition-all p-2`}
+              onClick={() => window.open("https://www.facebook.com/srizon13")}
+            >
+              <FaFacebookF
+                className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+              />
+            </button>
+          </div>
         </div>
-        {showButton && (
-          <button
-            className={`fixed bottom-5 right-5 cursor-pointer ${buttonFixedBgClass} ${buttonFixedTextClass} p-2 lg:p-4 rounded-full duration-200 transition-all flex items-center justify-center z-50 hover:-rotate-45`}
-            onClick={toggleDarkMode}
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? (
-              <FaSun className="h-3 lg:h-5 w-3 lg:w-5" />
-            ) : (
-              <FaMoon className="h-3 lg:h-5 w-3 lg:w-5" />
-            )}
-          </button>
-        )}
+        <div className="fixed bottom-5 right-0 rounded-l-lg flex flex-col overflow-hidden shadow-lg z-50">
+          {showButton && (
+            <button
+              className={`cursor-pointer ${socialButtonClass} ${socialButtonBorderClass} rounded-l-lg duration-200 transition-all flex items-center justify-center z-50 p-2`}
+              onClick={toggleDarkMode}
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <FaSun
+                  className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+                />
+              ) : (
+                <FaMoon
+                  className={`${socialButtonTextClass} text-xl h-3 w-3 lg:h-5 lg:w-5 duration-200 transition-all`}
+                />
+              )}
+            </button>
+          )}
+        </div>
         {/* Hero section */}
-        <div className={`${secondaryBgClass} p-2 lg:p-5 duration-200 transition-all`}>
+        <div
+          className={`${secondaryBgClass} p-2 lg:p-5 duration-200 transition-all`}
+        >
           <div
             className={`pt-24 pb-8 md:pt-32 md:pb-16 ${sectionAccentBgClass} rounded-[20px] lg:rounded-[50px] relative duration-200 transition-all`}
           >
@@ -419,7 +431,9 @@ const Landing = () => {
             <div
               className={`px-2 lg:px-0 md:w-5/6 lg:w-4/5 mx-auto flex flex-col items-center lg:items-start gap-10 lg:gap-8 ${borderClass} duration-200 transition-all`}
             >
-              <div className={`font-bold ${textClass} -mb-8 duration-200 transition-all`}>
+              <div
+                className={`font-bold ${textClass} -mb-8 duration-200 transition-all`}
+              >
                 <div
                   className={`${textClass} fade-in-text text-[20px] lg:text-[32px] font-light text-center lg:text-left duration-200 transition-all`}
                 >
@@ -447,7 +461,9 @@ const Landing = () => {
                     .catch(() => toast.error("Failed to copy email!"));
                 }}
               >
-                <FaRegCopy className={`${textClass}text-sm -mt-0.5 duration-200 transition-all`} />
+                <FaRegCopy
+                  className={`${textClass}text-sm -mt-0.5 duration-200 transition-all`}
+                />
                 <span>Email</span>
               </button>
             </div>
@@ -537,7 +553,9 @@ const Landing = () => {
         </div>
 
         {/* Experience section */}
-        <div className={`${`${mainBgClass} duration-200 transition-all`} p-2 lg:p-5`}>
+        <div
+          className={`${`${mainBgClass} duration-200 transition-all`} p-2 lg:p-5`}
+        >
           <div
             className={`py-16 lg:py-52 ${secondaryBgClass} rounded-[20px] lg:rounded-[50px] duration-200 transition-all`}
           >
@@ -576,7 +594,9 @@ const Landing = () => {
               >
                 <div className="flex flex-col md:flex-row w-full justify-between md:items-center gap-2 md:gap-0">
                   <div className="flex flex-col justify-between items-start">
-                    <div className={`${textClass} text-[24px] lg:[32px] duration-200 transition-all`}>
+                    <div
+                      className={`${textClass} text-[24px] lg:[32px] duration-200 transition-all`}
+                    >
                       {project.title}
                     </div>
                     <div
@@ -684,7 +704,11 @@ const Landing = () => {
                       >
                         Email Address
                       </div>
-                      <div className={`${textClass} duration-200 transition-all`}>raufun.nazin13@gmail.com</div>
+                      <div
+                        className={`${textClass} duration-200 transition-all`}
+                      >
+                        raufun.nazin13@gmail.com
+                      </div>
                     </div>
                   </div>
                   <div
@@ -713,7 +737,11 @@ const Landing = () => {
                       >
                         Phone Number
                       </div>
-                      <div className={`${textClass} duration-200 transition-all`}>+880-1682-386618</div>
+                      <div
+                        className={`${textClass} duration-200 transition-all`}
+                      >
+                        +880-1682-386618
+                      </div>
                     </div>
                   </div>
                   <div className="flex gap-3 items-center">
@@ -730,7 +758,11 @@ const Landing = () => {
                       >
                         Address
                       </div>
-                      <div className={`${textClass} duration-200 transition-all`}>Dhaka, Bangladesh</div>
+                      <div
+                        className={`${textClass} duration-200 transition-all`}
+                      >
+                        Dhaka, Bangladesh
+                      </div>
                     </div>
                   </div>
                 </div>
