@@ -73,13 +73,6 @@ const SnakeGame = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [started, lastDirection]);
 
-  useEffect(() => {
-    localStorage.setItem("snakeHighScore", Math.max(score, highScore));
-    if (gameOver || !started) return;
-    const interval = setInterval(moveSnake, 200);
-    return () => clearInterval(interval);
-  }, [snake, direction, gameOver, started, score]);
-
   function randomFoodPosition() {
     return {
       x: Math.floor(Math.random() * gridWidth),
@@ -91,33 +84,41 @@ const SnakeGame = () => {
     return foodIcons[Math.floor(Math.random() * foodIcons.length)];
   }
 
-  function moveSnake() {
-    const newSnake = [...snake];
-    let head = {
-      x: newSnake[0].x + direction.x,
-      y: newSnake[0].y + direction.y,
-    };
+  useEffect(() => {
+    localStorage.setItem("snakeHighScore", Math.max(score, highScore));
+    if (gameOver || !started) return;
 
-    head.x = (head.x + gridWidth) % gridWidth;
-    head.y = (head.y + gridHeight) % gridHeight;
+    function moveSnake() {
+      const newSnake = [...snake];
+      let head = {
+        x: newSnake[0].x + direction.x,
+        y: newSnake[0].y + direction.y,
+      };
 
-    if (
-      newSnake.some((segment) => segment.x === head.x && segment.y === head.y)
-    ) {
-      setGameOver(true);
-      return;
+      head.x = (head.x + gridWidth) % gridWidth;
+      head.y = (head.y + gridHeight) % gridHeight;
+
+      if (
+        newSnake.some((segment) => segment.x === head.x && segment.y === head.y)
+      ) {
+        setGameOver(true);
+        return;
+      }
+
+      newSnake.unshift(head);
+      if (head.x === food.x && head.y === food.y) {
+        setFood(randomFoodPosition());
+        setFoodIcon(randomFoodIcon());
+        setScore(score + 1);
+      } else {
+        newSnake.pop();
+      }
+      setSnake(newSnake);
     }
 
-    newSnake.unshift(head);
-    if (head.x === food.x && head.y === food.y) {
-      setFood(randomFoodPosition());
-      setFoodIcon(randomFoodIcon());
-      setScore(score + 1);
-    } else {
-      newSnake.pop();
-    }
-    setSnake(newSnake);
-  }
+    const interval = setInterval(moveSnake, 200);
+    return () => clearInterval(interval);
+  }, [snake, direction, gameOver, started, score, highScore, food.x, food.y]);
 
   return (
     <div className="relative flex items-center justify-center">
@@ -125,17 +126,17 @@ const SnakeGame = () => {
         <div
           className={`relative grid grid-cols-40 rounded-md ${
             !started
-              ? "bg-gray-800/80 backdrop-blur-xl"
+              ? "bg-neutral-800/80 backdrop-blur-xl"
               : gameOver
-              ? "bg-red-800/80 backdrop-blur-xl"
-              : "bg-gray-800"
+                ? "bg-red-800/80 backdrop-blur-xl"
+                : "bg-neutral-800"
           }`}
         >
           {Array.from({ length: gridWidth * gridHeight }).map((_, i) => {
             const x = i % gridWidth;
             const y = Math.floor(i / gridWidth);
             const isSnake = snake.some(
-              (segment) => segment.x === x && segment.y === y
+              (segment) => segment.x === x && segment.y === y,
             );
             const isFood = food.x === x && food.y === y;
             return (
@@ -173,13 +174,15 @@ const SnakeGame = () => {
           <div className="text-[#efefed] text-3xl text-center">
             💀 snake.exe has stopped working 💀
           </div>
-          <div className="text-gray-300 text-sm text-center">
+          <div className="text-neutral-300 text-sm text-center">
             Skill Issue? Or just a bug?
           </div>
-          <div className="text-yellow-400 mt-5">Your High Score: {highScore}</div>
+          <div className="text-yellow-400 mt-5">
+            Your High Score: {highScore}
+          </div>
           <div className="text-[#efefed]">Your Score: {score}</div>
           <button
-            className="bg-[#efefed] text-gray-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-gray-200 animate-bounce"
+            className="bg-[#efefed] text-neutral-800 px-3 py-1 rounded-lg text-lg mt-5 cursor-pointer transition-all duration-200 hover:bg-neutral-200 animate-bounce"
             onClick={() => {
               setSnake(initialSnake);
               setFood(randomFoodPosition());

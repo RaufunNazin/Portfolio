@@ -5,11 +5,11 @@ const ExperienceCard = ({ exp, darkMode }) => {
   const [flipped, setFlipped] = useState(false);
   const [tooltip, setTooltip] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const textClass = darkMode ? "text-gray-200" : "text-gray-800";
-  const flipCardClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const borderClass = darkMode ? "border-gray-900" : "border-[#efefed]";
-  const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
+  const textClass = darkMode ? "text-neutral-200" : "text-neutral-800";
+  const flipCardClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
+  const borderClass = darkMode ? "border-neutral-900" : "border-[#efefed]";
+  const mainBgClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
+  const secondaryBgClass = darkMode ? "bg-neutral-800" : "bg-white";
 
   const handleMouseMove = (e) => {
     setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 });
@@ -28,32 +28,40 @@ const ExperienceCard = ({ exp, darkMode }) => {
       <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
         {/* Front Side */}
         <div
-          className={`flip-card-front flex flex-col justify-between p-5 rounded-md border-2 text-gray-900 border-gray-400`}
+          className={`flip-card-front flex flex-col justify-between p-5 rounded-md border-2 text-neutral-900 border-neutral-400`}
         >
           <img
             src={exp.image}
             alt={exp.company}
-            className={`w-fit ${
-              exp.company == "Amicsoft" ? "h-7" : "h-8"
-            }`}
+            className={`w-fit ${exp.company == "Amicsoft" ? "h-7" : "h-8"}`}
           />
           <div>
-            <h3 className={`${textClass} text-[24px] lg:text-[32px] duration-200 transition-all`}>
+            <h3
+              className={`${textClass} text-[24px] lg:text-[32px] duration-200 transition-all`}
+            >
               {exp.title}
             </h3>
-            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
+            <p
+              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
+            >
               {exp.company}
             </p>
           </div>
           <div>
-            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
+            <p
+              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
+            >
               {exp.duration}
             </p>
-            <p className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}>
+            <p
+              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
+            >
               {exp.type}
             </p>
           </div>
-          <div className={`${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}>
+          <div
+            className={`${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
+          >
             {exp.summary}
           </div>
           <div className="flex w-full justify-end">
@@ -67,10 +75,12 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
         {/* Back Side */}
         <div
-          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-gray-800 overflow-y-auto duration-200 transition-all`}
+          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-neutral-800 overflow-y-auto duration-200 transition-all`}
         >
           <div>
-            <div className={`mt-2 -mb-2 font-bold ${textClass} duration-200 transition-all`}>
+            <div
+              className={`mt-2 -mb-2 font-bold ${textClass} duration-200 transition-all`}
+            >
               What I did
             </div>
             <ul
@@ -82,7 +92,11 @@ const ExperienceCard = ({ exp, darkMode }) => {
             </ul>
           </div>
           <div>
-            <div className={`mt-2 font-bold ${textClass} duration-200 transition-all`}>What I learned</div>
+            <div
+              className={`mt-2 font-bold ${textClass} duration-200 transition-all`}
+            >
+              What I learned
+            </div>
             <div className="flex md:flex-row w-full items-center gap-2 flex-wrap">
               {exp.tech.map((tech, idx) => (
                 <div

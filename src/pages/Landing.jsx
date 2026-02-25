@@ -19,34 +19,32 @@ const Landing = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   // Classes that change based on dark mode
-  const mainBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const secondaryBgClass = darkMode ? "bg-gray-800" : "bg-white";
+  const mainBgClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
+  const secondaryBgClass = darkMode ? "bg-neutral-800" : "bg-white";
   const expertiseClass = darkMode
-    ? "bg-gray-800 hover:bg-gray-800/50"
+    ? "bg-neutral-800 hover:bg-neutral-800/50"
     : "bg-white hpver:bg-white/50";
-  const textClass = darkMode ? "text-gray-200" : "text-gray-800";
+  const textClass = darkMode ? "text-neutral-200" : "text-neutral-800";
   const buttonBgClass = darkMode
-    ? "bg-gray-700 hover:bg-gray-600"
+    ? "bg-neutral-700 hover:bg-neutral-600"
     : "bg-white hover:bg-white/80";
-  const buttonFixedBgClass = darkMode
-    ? "bg-gray-700 hover:bg-gray-600 border-2 border-gray-200"
-    : "bg-white hover:bg-white/80 border-2 border-gray-800";
-  const buttonTextClass = darkMode ? "text-gray-200" : "text-gray-800";
-  const buttonFixedTextClass = darkMode ? "text-gray-200" : "text-gray-800";
-  const sectionAccentBgClass = darkMode ? "bg-gray-900" : "bg-[#efefed]";
-  const borderClass = darkMode ? "border-gray-200" : "border-gray-800";
-  const contactBgClass = darkMode ? "bg-gray-800" : "bg-white";
+  const buttonTextClass = darkMode ? "text-neutral-200" : "text-neutral-800";
+  const sectionAccentBgClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
+  const borderClass = darkMode ? "border-neutral-200" : "border-neutral-800";
+  const contactBgClass = darkMode ? "bg-neutral-800" : "bg-white";
   const underlineButtonClass = darkMode
     ? "underline-button-dark"
     : "underline-button-light";
   const socialButtonClass = darkMode
     ? "bg-[#efefed]/80 hover:bg-[#efefed]"
-    : "bg-gray-800/80 hover:bg-gray-800";
-  const socialButtonTextClass = darkMode ? "text-gray-800" : "text-[#efefed]";
+    : "bg-neutral-800/80 hover:bg-neutral-800";
+  const socialButtonTextClass = darkMode
+    ? "text-neutral-800"
+    : "text-[#efefed]";
   const socialButtonBorderClass = darkMode
-    ? "border-b border-gray-800"
+    ? "border-b border-neutral-800"
     : "border-b border-[#efefed]";
-  const iconClass = darkMode ? "bg-gray-600/80" : "bg-gray-200/80";
+  const iconClass = darkMode ? "bg-neutral-600/80" : "bg-neutral-200/80";
 
   const projects = [
     {
@@ -717,10 +715,10 @@ const Landing = () => {
                       navigator.clipboard
                         .writeText("+8801682386618")
                         .then(() =>
-                          toast.info("Phone number copied to clipboard!")
+                          toast.info("Phone number copied to clipboard!"),
                         )
                         .catch(() =>
-                          toast.error("Failed to copy phone number!")
+                          toast.error("Failed to copy phone number!"),
                         );
                     }}
                   >
@@ -777,7 +775,7 @@ const Landing = () => {
         >
           <hr
             className={`w-full border-2 ${
-              darkMode ? "border-gray-700" : "border-[#efefed]"
+              darkMode ? "border-neutral-700" : "border-[#efefed]"
             } duration-200 transition-all`}
           />
           <div
