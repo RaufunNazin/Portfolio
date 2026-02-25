@@ -1,151 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap");
 @import "tailwindcss";
 
 :root {
   --font-zain: "Zain", sans-serif;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   font-family: var(--font-zain), sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Underline effect */
-.underline-button-light {
-  position: relative;
-  background: none;
-  border: none;
-  color: #1e2939;
-  transition: color 0.3s;
+html {
+  scroll-behavior: smooth;
 }
 
-.underline-button-light::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0%;
-  background-color: #1e2939;
-  transition: width 0.3s;
-  transform-origin: left;
+/* GSAP drives reveal. */
+[data-reveal] {
+  will-change: transform, opacity, filter;
 }
 
-.underline-button-light:hover::after {
-  width: 100%;
-}
-
-.underline-button-dark {
-  position: relative;
-  background: none;
-  border: none;
-  color: #efefed;
-  transition: color 0.3s;
-}
-
-.underline-button-dark::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0%;
-  background-color: #efefed;
-  transition: width 0.3s;
-  transform-origin: left;
-}
-
-.underline-button-dark:hover::after {
-  width: 100%;
-}
-
-/* Underline effect */
-.underline-button-2 {
-  position: relative;
-  background: none;
-  border: none;
-  color: #efefed;
-  transition: color 0.3s;
-}
-
-.underline-button-2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 0%;
-  background-color: #efefed;
-  transition: width 0.3s;
-  transform-origin: left;
-}
-
-.underline-button-2:hover::after {
-  width: 100%;
-}
-
-.fade-in-text {
-  opacity: 0;
-  transition: opacity 1s;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.5s;
-  transition: all 0.2s;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Fade In From Bottom */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Initial State (Hidden) */
-.fade-in-up {
-  opacity: 0; /* Hidden by default */
-  transform: translateY(125px);
-  transition: opacity 0.5s 0.5s, transform 1s 1s;
-}
-
-/* Triggered Animation */
-.fade-in-up.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* flip.css */
+/* Flip card */
 .flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.2, 1);
+  will-change: transform;
 }
-
 .flipped {
   transform: rotateY(180deg);
 }
-
 .flip-card-front,
 .flip-card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   box-sizing: border-box;
 }
-
 .flip-card-back {
   transform: rotateY(180deg);
+}
+
+/* Ambient blobs + noise */
+.blob {
+  border-radius: 999px;
+  filter: blur(44px);
+  transform: translate3d(0, 0, 0);
+  animation: blobFloat 16s ease-in-out infinite;
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(52, 211, 153, 0.75),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(34, 211, 238, 0.65),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 80%,
+      rgba(167, 139, 250, 0.6),
+      transparent 65%
+    );
+}
+
+.blob-a {
+  animation-duration: 18s;
+}
+.blob-b {
+  animation-duration: 20s;
+  animation-direction: reverse;
+}
+.blob-c {
+  animation-duration: 22s;
+}
+
+@keyframes blobFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(18px, -14px, 0) scale(1.03);
+  }
+  66% {
+    transform: translate3d(-16px, 12px, 0) scale(0.985);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.noise {
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Pulse dot */
+.pulse-dot {
+  animation: pulseDot 1.9s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  55% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+
+/* Button shimmer (no tilt) */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  transform: translateX(-60%) rotate(12deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.14),
+    transparent
+  );
+  transition: transform 650ms ease;
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  transform: translateX(60%) rotate(12deg);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .blob,
+  .pulse-dot {
+    animation: none;
+  }
+  .flip-card-inner {
+    transition: none;
+  }
+  .btn-shimmer::after {
+    display: none;
+  }
 }

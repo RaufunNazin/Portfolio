@@ -1,127 +1,131 @@
-// ExperienceCard.jsx
-import { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const ExperienceCard = ({ exp, darkMode }) => {
   const [flipped, setFlipped] = useState(false);
-  const [tooltip, setTooltip] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const textClass = darkMode ? "text-neutral-200" : "text-neutral-800";
-  const flipCardClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
-  const borderClass = darkMode ? "border-neutral-900" : "border-[#efefed]";
-  const mainBgClass = darkMode ? "bg-neutral-900" : "bg-[#efefed]";
-  const secondaryBgClass = darkMode ? "bg-neutral-800" : "bg-white";
 
-  const handleMouseMove = (e) => {
-    setCursorPos({ x: e.clientX + 20, y: e.clientY + 20 });
-  };
+  const ui = useMemo(() => {
+    const text = darkMode ? "text-neutral-100" : "text-neutral-900";
+    const sub = darkMode ? "text-neutral-300" : "text-neutral-600";
+    const border = darkMode ? "border-white/10" : "border-black/10";
+    const frontBg = darkMode ? "bg-neutral-900/80" : "bg-white/80";
+    const backBg = darkMode ? "bg-neutral-950" : "bg-[#fbfbf8]";
+    const chip = darkMode
+      ? "bg-white/8 text-neutral-100"
+      : "bg-black/5 text-neutral-900";
+    return { text, sub, border, frontBg, backBg, chip };
+  }, [darkMode]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") setFlipped(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   return (
-    <div
-      className="min-w-full h-[280px] md:h-[400px] cursor-pointer relative"
-      onClick={() => setFlipped(!flipped)}
-      onMouseMove={(e) => {
-        setTooltip(true);
-        handleMouseMove(e);
-      }}
-      onMouseLeave={() => setTooltip(false)}
+    <button
+      type="button"
+      className="cursor-pointer min-w-full h-[320px] md:h-[420px] relative text-left focus:outline-none focus:ring-2 focus:ring-cyan-400/40 rounded-3xl"
+      onClick={() => setFlipped((v) => !v)}
+      aria-label={`Experience card: ${exp.company}`}
+      title="Click to flip"
     >
       <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
-        {/* Front Side */}
+        {/* FRONT */}
         <div
-          className={`flip-card-front flex flex-col justify-between p-5 rounded-md border-2 text-neutral-900 border-neutral-400`}
+          className={`flip-card-front rounded-3xl border ${ui.border} ${ui.frontBg} backdrop-blur-xl shadow-lg p-5 flex flex-col justify-between overflow-hidden`}
         >
-          <img
-            src={exp.image}
-            alt={exp.company}
-            className={`w-fit ${exp.company == "Amicsoft" ? "h-7" : "h-8"}`}
-          />
-          <div>
-            <h3
-              className={`${textClass} text-[24px] lg:text-[32px] duration-200 transition-all`}
+          <div className="flex items-start justify-between gap-3">
+            <img
+              src={exp.image}
+              alt={exp.company}
+              className={`w-auto ${exp.company === "Amicsoft" ? "h-7" : "h-8"} opacity-95`}
+              loading="lazy"
+            />
+
+            <div className="flex items-center gap-2 shrink-0">
+              {exp.isCurrent && (
+                <span className="px-2 py-1 rounded-full text-[11px] font-semibold bg-emerald-500 text-white">
+                  Current
+                </span>
+              )}
+              <span
+                className={`px-2 py-1 rounded-full text-[11px] border ${ui.border} ${ui.chip}`}
+              >
+                Flip
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <div
+              className={`${ui.text} text-[22px] md:text-[26px] font-semibold leading-tight`}
             >
               {exp.title}
-            </h3>
-            <p
-              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
-            >
+            </div>
+            <div className={`${ui.sub} text-[14px] md:text-[16px] mt-1`}>
               {exp.company}
-            </p>
+            </div>
           </div>
-          <div>
-            <p
-              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
-            >
+
+          <div className="mt-4 space-y-1">
+            <div className={`${ui.sub} text-[13px] md:text-[14px]`}>
               {exp.duration}
-            </p>
-            <p
-              className={`${textClass} text-[16px] lg:text-[20px] duration-200 transition-all`}
-            >
+            </div>
+            <div className={`${ui.sub} text-[13px] md:text-[14px]`}>
               {exp.type}
-            </p>
+            </div>
           </div>
+
           <div
-            className={`${textClass} text-[12px] lg:text-[16px] duration-200 transition-all`}
+            className={`mt-4 text-[13px] md:text-[14px] ${ui.sub} leading-relaxed`}
           >
             {exp.summary}
           </div>
-          <div className="flex w-full justify-end">
-            <p
-              className={`lg:hidden ${mainBgClass} ${textClass} rounded-full px-3 duration-200 transition-all`}
-            >
-              Tap to flip
-            </p>
+
+          <div className="mt-5">
+            <div className="h-[2px] w-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 rounded-full opacity-80" />
+            <div className={`mt-2 text-[11px] ${ui.sub}`}>
+              Click for details
+            </div>
           </div>
         </div>
 
-        {/* Back Side */}
+        {/* BACK */}
         <div
-          className={`flip-card-back flex flex-col justify-start p-3 rounded-md shadow-lg border-2 ${flipCardClass} ${borderClass} text-neutral-800 overflow-y-auto duration-200 transition-all`}
+          className={`flip-card-back rounded-3xl border ${ui.border} ${ui.backBg} shadow-lg p-5 overflow-y-auto`}
         >
-          <div>
-            <div
-              className={`mt-2 -mb-2 font-bold ${textClass} duration-200 transition-all`}
-            >
-              What I did
-            </div>
-            <ul
-              className={`${textClass} list-disc pl-5 text-[12px] lg:text-[16px] duration-200 transition-all`}
-            >
-              {exp.details.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div
-              className={`mt-2 font-bold ${textClass} duration-200 transition-all`}
-            >
-              What I learned
-            </div>
-            <div className="flex md:flex-row w-full items-center gap-2 flex-wrap">
-              {exp.tech.map((tech, idx) => (
-                <div
-                  key={idx}
-                  className={`rounded-full ${secondaryBgClass} ${textClass} px-3 py-0.5 text-center text-[12px] lg:text-[16px] duration-200 transition-all`}
+          <div className={`${ui.text} font-semibold text-base`}>What I did</div>
+          <ul
+            className={`mt-2 list-disc pl-5 space-y-1 text-[13px] md:text-[14px] ${ui.sub}`}
+          >
+            {exp.details.map((point, idx) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+
+          <div className="mt-5">
+            <div className={`${ui.text} font-semibold text-base`}>Tech</div>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {exp.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className={`text-[12px] px-2.5 py-1 rounded-full border ${ui.border} ${ui.chip}`}
                 >
                   {tech}
-                </div>
+                </span>
               ))}
             </div>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between">
+            <div className={`text-[11px] ${ui.sub}`}>Press Esc to close</div>
+            <div className={`text-[11px] ${ui.sub}`}>Click to flip back</div>
           </div>
         </div>
       </div>
-      {tooltip && (
-        <div
-          className={`hidden lg:block fixed z-50 pointer-events-none shadow-md rounded-md px-2 py-1 text-md ${mainBgClass} ${textClass} duration-200 transition-all`}
-          style={{
-            top: cursorPos.y,
-            left: cursorPos.x,
-          }}
-        >
-          Click to view details
-        </div>
-      )}
-    </div>
+    </button>
   );
 };
 
