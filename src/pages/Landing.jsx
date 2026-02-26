@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { BiLogoGmail } from "react-icons/bi";
 import { FaGithub, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 import { FaLinkedinIn, FaRegCopy } from "react-icons/fa6";
@@ -32,10 +26,7 @@ const Landing = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showFab, setShowFab] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-
-  const [hoveredImage, setHoveredImage] = useState(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const rafRef = useRef(null);
+  const [snakeScore, setSnakeScore] = useState(0);
 
   const [activeProject, setActiveProject] = useState(null);
   const [copiedKey, setCopiedKey] = useState(null);
@@ -49,18 +40,27 @@ const Landing = () => {
 
   const initTheme = () => {
     const stored = localStorage.getItem(STORAGE_KEY);
+
+    // 1) Respect user choice if they set it before
     if (stored === "true" || stored === "false") {
       const next = stored === "true";
       setDarkMode(next);
       applyThemeToDom(next);
       return;
     }
-    const prefersDark = window.matchMedia?.(
-      "(prefers-color-scheme: dark)",
-    )?.matches;
-    const next = Boolean(prefersDark);
-    setDarkMode(next);
-    applyThemeToDom(next);
+
+    // 2) Otherwise use system theme
+    const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
+    if (mq && typeof mq.matches === "boolean") {
+      const next = mq.matches; // system preference
+      setDarkMode(next);
+      applyThemeToDom(next);
+      return;
+    }
+
+    // 3) Fallback: dark default
+    setDarkMode(true);
+    applyThemeToDom(true);
   };
 
   const toggleDarkMode = () => {
@@ -85,32 +85,31 @@ const Landing = () => {
     }
   };
 
-  const clampToViewport = (x, y, w = 320, h = 210, pad = 10) => {
-    const maxX = window.innerWidth - w - pad;
-    const maxY = window.innerHeight - h - pad;
-    return {
-      x: Math.max(pad, Math.min(maxX, x)),
-      y: Math.max(pad, Math.min(maxY, y)),
-    };
-  };
-
-  const handleMouseMove = (e, src) => {
-    const rawX = e.clientX + 8;
-    const rawY = e.clientY + 8;
-    const { x, y } = clampToViewport(rawX, rawY, 320, 210);
-
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      setCursorPos({ x, y });
-      setHoveredImage(src);
-    });
-  };
-
-  const handleMouseLeave = () => setHoveredImage(null);
-
   useEffect(() => {
     initTheme();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === "true" || stored === "false") return; // user override
+
+    const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
+    if (!mq) return;
+
+    const handler = (e) => {
+      setDarkMode(e.matches);
+      applyThemeToDom(e.matches);
+    };
+
+    // modern + fallback
+    mq.addEventListener?.("change", handler);
+    mq.addListener?.(handler);
+
+    return () => {
+      mq.removeEventListener?.("change", handler);
+      mq.removeListener?.(handler);
+    };
   }, []);
 
   useEffect(() => {
@@ -362,15 +361,15 @@ const Landing = () => {
         tags: ["React", "FastAPI", "SNMP", "Telnet", "Map"],
       },
       {
-        title: "OLT Module Extension (Maestro ISP Billing)",
+        title: "OLT Module Extension (MaXim ISP Billing)",
         status: "Finished",
         subtitle: "Extension feature integrated into Maestro billing system",
         bullets: [
           "Integrated extension capability into billing workflows.",
           "Designed for speed and minimal operator friction.",
-          "Aligned with existing Maestro patterns and data model.",
+          "Aligned with existing MaXim patterns and data model.",
         ],
-        tags: ["Maestro", "Billing", "Integration", "UX", "System Design"],
+        tags: ["MaXim", "Billing", "Integration", "UX", "System Design"],
       },
     ],
     [],
@@ -407,15 +406,6 @@ const Landing = () => {
         state: "Under development",
       },
       {
-        src: "/snapgenix.png",
-        title: "Snapgenix",
-        type: "Portfolio",
-        description:
-          "Photography & videography company portfolio (food, product, event).",
-        tech: ["React", "FastAPI", "MySQL", "Tailwind", "SQLAlchemy", "Docker"],
-        state: "Under development",
-      },
-      {
         src: "/ukway.png",
         title: "UKWay",
         type: "Consultancy",
@@ -430,15 +420,6 @@ const Landing = () => {
           "Docker",
         ],
         state: "Shipped",
-      },
-      {
-        src: "/editpdf.png",
-        title: "EditPDF (Zoopsign)",
-        type: "Product Feature",
-        description:
-          "In-browser PDF editor module. Still under polish after final release.",
-        tech: ["Next.js", "TypeScript", "Node.js", "SVG"],
-        state: "Polishing",
       },
     ],
     [],
@@ -536,13 +517,13 @@ const Landing = () => {
       <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
         {showFab && (
           <>
-            {/* <button
+            <button
               className={`cursor-pointer rounded-2xl border ${ui.border} backdrop-blur-xl ${ui.panel} shadow-lg p-3 transition active:scale-[0.98] inline-flex items-center justify-center ${ui.accentRing}`}
               aria-label="Toggle dark mode"
               onClick={toggleDarkMode}
             >
               {darkMode ? <FaSun /> : <FaMoon />}
-            </button> */}
+            </button>
 
             <button
               className={`cursor-pointer rounded-2xl border ${ui.border} backdrop-blur-xl ${ui.panel} shadow-lg p-3 transition active:scale-[0.98] ${ui.accentRing}`}
@@ -575,7 +556,7 @@ const Landing = () => {
             </div>
 
             <div className="flex items-center gap-2">
-              {/* <button
+              <button
                 className={`cursor-pointer rounded-2xl border ${ui.border} ${ui.button} h-10 w-10 inline-flex items-center justify-center transition active:scale-[0.98] ${ui.accentRing}`}
                 onClick={toggleDarkMode}
                 aria-label="Toggle theme"
@@ -585,7 +566,7 @@ const Landing = () => {
                 ) : (
                   <FaMoon className="text-sm" />
                 )}
-              </button> */}
+              </button>
 
               <button
                 className={`cursor-pointer rounded-2xl border ${ui.border} ${ui.button} px-4 py-2 transition active:scale-[0.98] btn-shimmer inline-flex items-center gap-2 ${ui.accentRing}`}
@@ -623,28 +604,26 @@ const Landing = () => {
                   </div>
 
                   <div className="mt-5 flex flex-wrap gap-2">
-                    <span
+                    <button
                       className={`px-3 py-1 rounded-full text-sm border ${ui.border} ${ui.chip}`}
                     >
                       Software Engineer
-                    </span>
-                    <span
+                    </button>
+                    <button
                       className={`px-3 py-1 rounded-full text-sm border ${ui.border} ${ui.chip}`}
                     >
                       Full Stack
-                    </span>
-                    <span
+                    </button>
+                    <button
                       className={`px-3 py-1 rounded-full text-sm border ${ui.border} ${ui.chip}`}
                     >
                       4 YoE
-                    </span>
-                    <span
+                    </button>
+                    <button
                       className={`px-3 py-1 rounded-full text-sm border ${ui.border} ${ui.chip}`}
                     >
-                      <span className="inline-flex items-center gap-1">
-                        <FiCpu /> React • FastAPI
-                      </span>
-                    </span>
+                      React • FastAPI
+                    </button>
                   </div>
 
                   {/* stable-height copy button */}
@@ -979,8 +958,6 @@ const Landing = () => {
                 <button
                   key={p.title}
                   type="button"
-                  onMouseMove={(e) => handleMouseMove(e, p.src)}
-                  onMouseLeave={handleMouseLeave}
                   onClick={() => setActiveProject(p)}
                   className={`cursor-pointer text-left rounded-3xl border ${ui.border} ${
                     darkMode
@@ -1031,22 +1008,6 @@ const Landing = () => {
                 </button>
               ))}
             </div>
-
-            {/* hover preview */}
-            {hoveredImage && (
-              <div
-                className={`hidden lg:block fixed z-50 pointer-events-none rounded-2xl border ${ui.border} shadow-xl overflow-hidden`}
-                style={{ top: cursorPos.y, left: cursorPos.x, width: 320 }}
-              >
-                <div className={`${darkMode ? "bg-neutral-900" : "bg-white"}`}>
-                  <img
-                    src={hoveredImage}
-                    alt="preview"
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -1068,17 +1029,25 @@ const Landing = () => {
               <span className="h-3 w-3 rounded-full bg-yellow-400/80" />
               <span className="h-3 w-3 rounded-full bg-emerald-400/80" />
               <div className={`ml-3 text-sm font-semibold ${ui.text}`}>
-                Nostalgia.exe
+                snakeoverflow.exe
               </div>
             </div>
-            <div className={`text-xs ${ui.subtext}`}>Choose a game</div>
+            <div className={`text-xs ${ui.subtext} flex items-center gap-3`}>
+              <span className="hidden sm:inline">
+                Arrow/WASD • Enter start • P pause • Esc exit
+              </span>
+              <span className={`${ui.text} font-semibold`}>
+                Score: {snakeScore}
+              </span>
+            </div>
           </div>
 
           {/* light bg in light mode, dark components inside games */}
           <div
-            className={`${darkMode ? "bg-neutral-950" : "bg-[#f7f7f2]"} p-4 sm:p-6`}
+            className={`relative overflow-hidden p-0 ${darkMode ? "bg-neutral-950" : "bg-[#f7f7f2]"}`}
+            style={{ height: 620 }} // or className="h-[620px]"
           >
-            <SnakeGame darkMode={darkMode} />
+            <SnakeGame darkMode={darkMode} onScoreChange={setSnakeScore} />
           </div>
         </div>
       </section>
