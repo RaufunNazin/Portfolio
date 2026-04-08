@@ -36,7 +36,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
         <div
           className={`flip-card-front rounded-3xl border ${ui.border} ${ui.frontBg} backdrop-blur-xl shadow-lg p-5 flex flex-col justify-between overflow-hidden`}
         >
-          <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center justify-between gap-3">
             <img
               src={exp.image}
               alt={exp.company}
@@ -44,17 +44,11 @@ const ExperienceCard = ({ exp, darkMode }) => {
               loading="lazy"
             />
 
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-2 shrink-0 animate-pulse">
               {exp.isCurrent && (
-                <span className="px-2 py-1 rounded-full text-[11px] font-semibold bg-emerald-500 text-white">
-                  Current
+                <span className="px-2 py-2 rounded-full text-[11px] font-semibold bg-emerald-500 text-white">
                 </span>
               )}
-              <span
-                className={`px-2 py-1 rounded-full text-[11px] border ${ui.border} ${ui.chip}`}
-              >
-                Flip
-              </span>
             </div>
           </div>
 
