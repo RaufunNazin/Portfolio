@@ -26,7 +26,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
   return (
     <button
       type="button"
-      className="cursor-pointer min-w-full h-[320px] md:h-[420px] relative text-left focus:outline-none focus:ring-2 focus:ring-cyan-400/40 rounded-3xl"
+      className={`card-sweep cursor-pointer min-w-full h-[320px] md:h-[420px] relative text-left focus:outline-none rounded-3xl ${darkMode ? "bg-white/6" : "bg-black/5"} border ${ui.border} shadow-lg p-0 perspective`}
       onClick={() => setFlipped((v) => !v)}
       aria-label={`Experience card: ${exp.company}`}
       title="Click to flip"
@@ -46,8 +46,7 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
             <div className="flex items-center gap-2 shrink-0 animate-pulse">
               {exp.isCurrent && (
-                <span className="px-2 py-2 rounded-full text-[11px] font-semibold bg-emerald-500 text-white">
-                </span>
+                <span className="px-2 py-2 rounded-full text-[11px] font-semibold bg-emerald-500 text-white"></span>
               )}
             </div>
           </div>
@@ -88,28 +87,32 @@ const ExperienceCard = ({ exp, darkMode }) => {
 
         {/* BACK */}
         <div
-          className={`flip-card-back rounded-3xl border ${ui.border} ${ui.backBg} shadow-lg p-5 overflow-y-auto`}
+          className={`flex flex-col justify-between flip-card-back rounded-3xl border ${ui.border} ${ui.backBg} shadow-lg p-5 overflow-y-auto`}
         >
-          <div className={`${ui.text} font-semibold text-base`}>What I did</div>
-          <ul
-            className={`mt-2 list-disc pl-5 space-y-1 text-[13px] md:text-[14px] ${ui.sub}`}
-          >
-            {exp.details.map((point, idx) => (
-              <li key={idx}>{point}</li>
-            ))}
-          </ul>
-
-          <div className="mt-5">
-            <div className={`${ui.text} font-semibold text-base`}>Tech</div>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {exp.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className={`text-[12px] px-2.5 py-1 rounded-full border ${ui.border} ${ui.chip}`}
-                >
-                  {tech}
-                </span>
+          <div>
+            <div className={`${ui.text} font-semibold text-base`}>
+              What I did
+            </div>
+            <ul
+              className={`mt-2 list-disc pl-5 space-y-1 text-[13px] md:text-[14px] ${ui.sub}`}
+            >
+              {exp.details.map((point, idx) => (
+                <li key={idx}>{point}</li>
               ))}
+            </ul>
+
+            <div className="mt-5">
+              <div className={`${ui.text} font-semibold text-base`}>Tech</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {exp.tech.map((tech) => (
+                  <span
+                    key={tech}
+                    className={`text-[12px] px-2.5 py-1 rounded-full border ${ui.border} ${ui.chip}`}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
