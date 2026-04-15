@@ -9,6 +9,7 @@ import {
   FiCpu,
   FiServer,
   FiPieChart,
+  FiActivity,
 } from "react-icons/fi";
 
 import SnakeGame from "../components/SnakeGame";
@@ -208,7 +209,7 @@ const Landing = () => {
       { title: "Tailwind", image: "/tailwind.png", since: 2022 },
       { title: "FastAPI", image: "/fastapi.svg", since: 2023 },
       { title: "Python", image: "/python.svg", since: 2022 },
-      { title: "Docker", image: "/docker.webp", since: 2022 },
+      { title: "Docker", image: "/docker.svg", since: 2022 },
       { title: "Linux", image: "/linux.png", since: 2020 },
       { title: "Git", image: "/git.png", since: 2022 },
       { title: "MongoDB", image: "/mongodb.png", since: 2022 },
@@ -774,7 +775,7 @@ const Landing = () => {
               <img
                 src={darkMode ? "/amicsoft-white.png" : "/amicsoft.png"}
                 alt="Amicsoft"
-                className="h-6 mx-auto"
+                className="h-5.5 mx-auto"
                 loading="lazy"
               />
             </div>
@@ -868,71 +869,62 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Recent Work - Version 9: The Focus Block */}
+      {/* Recent Work - V16: The Code Editor */}
       <section
         className="mx-auto w-full max-w-[1200px] px-3 sm:px-6 lg:px-8 mt-10 sm:mt-12"
         data-reveal
       >
-        <div
-          className={`rounded-3xl border ${ui.border} ${ui.panel} backdrop-blur-xl shadow-lg p-8 sm:p-12`}
-        >
-          <div className="mb-10 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Recent Work
-            </h2>
-            <p className={`mt-2 text-base ${ui.subtext} max-w-md`}>
-              Deep dives into complex systems and architectures I've recently
-              deployed.
-            </p>
+        <div className={`rounded-3xl border ${ui.border} ${ui.panel} backdrop-blur-xl shadow-lg p-6 sm:p-8`}>
+          <div className="mb-8">
+            <div className="text-lg font-semibold">Key Implementations</div>
+            <div className="mt-1 h-[2px] w-16 bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 rounded-full" />
           </div>
 
-          <div className="flex flex-col gap-12 sm:gap-16">
-            {flagship.map((c, index) => (
-              <div
-                key={c.title}
-                className={`relative ${index !== flagship.length - 1 ? "pb-12 sm:pb-16 border-b border-black/10 dark:border-white/10" : ""}`}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {flagship.map((c) => (
+              <div 
+                key={c.title} 
+                className={`group rounded-xl border ${ui.border} ${darkMode ? "bg-[#0d0d0d]" : "bg-[#f8f9fa]"} shadow-md overflow-hidden flex flex-col`}
               >
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
-                  {/* Title Area */}
-                  <div className="lg:w-1/3 shrink-0">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span
-                        className={`w-2 h-2 rounded-full ${c.status === "Finished" ? "bg-emerald-500" : "bg-cyan-500"} animate-pulse`}
-                      />
-                      <span className="text-xs uppercase tracking-widest font-bold opacity-60">
-                        {c.status}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight">
-                      {c.title}
-                    </h3>
+                {/* Editor Tabs */}
+                <div className={`flex items-center px-4 h-10 border-b ${ui.border} ${darkMode ? "bg-[#161616]" : "bg-[#ececec]"} font-mono text-[11px]`}>
+                  <div className={`px-3 py-1 rounded-t-md ${darkMode ? "bg-[#0d0d0d] text-white" : "bg-[#f8f9fa] text-black"} border-t border-l border-r ${ui.border} flex items-center gap-2 mt-auto`}>
+                    <FiActivity className={c.status === "Finished" ? "text-emerald-500" : "text-cyan-500"} />
+                    {c.title.split(' ')[0].toLowerCase()}.ts
+                  </div>
+                </div>
 
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {c.tags.map((t) => (
-                        <span
-                          key={t}
-                          className={`text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded bg-black/5 dark:bg-white/5 text-neutral-600 dark:text-neutral-400`}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                {/* Editor Body */}
+                <div className="p-5 font-mono text-sm flex gap-4 h-full relative">
+                  {/* Line Numbers (Passive animation: light up on hover) */}
+                  <div className={`flex flex-col text-right select-none ${darkMode ? "text-neutral-700" : "text-neutral-400"} group-hover:text-cyan-500/50 transition-colors`}>
+                    1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7
                   </div>
 
-                  {/* Details Area */}
-                  <div className="lg:w-2/3">
-                    <h4 className={`text-lg font-medium mb-6 ${ui.text}`}>
-                      {c.subtitle}
-                    </h4>
-                    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                  {/* Code Content */}
+                  <div className="flex-1 flex flex-col">
+                    <div className="text-lg font-bold tracking-tight font-sans mb-1">{c.title}</div>
+                    <div className={`text-xs ${ui.subtext} font-sans mb-4`}>// {c.subtitle}</div>
+                    
+                    <div className="space-y-3 mb-6 flex-1">
                       {c.bullets.map((b, i) => (
-                        <div
-                          key={i}
-                          className={`text-sm leading-relaxed ${ui.subtext} relative pl-4 before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:bg-emerald-400/50 before:rounded-full`}
-                        >
-                          {b}
+                        <div key={i} className="flex items-start gap-2">
+                          <span className={`${c.status === "Finished" ? "text-emerald-500/50" : "text-cyan-500/50"}`}>*</span>
+                          <span className={`font-sans text-sm ${ui.text}`}>{b}</span>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Tech Array & Blinking Cursor */}
+                    <div className="mt-auto flex items-center flex-wrap gap-2 pt-4">
+                      <span className="text-violet-400">const</span> 
+                      <span className="text-blue-400">stack</span> 
+                      <span className="text-neutral-400">=</span> 
+                      <span className="text-yellow-400">
+                        [{c.tags.map(t => `'${t}'`).join(', ')}]
+                      </span>
+                      {/* Ambient Blinking Cursor */}
+                      <span className={`w-2 h-4 ${c.status === "Finished" ? "bg-emerald-400" : "bg-cyan-400"} animate-pulse ml-1`} />
                     </div>
                   </div>
                 </div>
