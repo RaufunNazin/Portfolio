@@ -375,12 +375,12 @@ const Landing = () => {
       </div>
 
       {/* HERO */}
-      <div className="mx-auto w-full max-w-[1200px] px-3 sm:px-6 lg:px-8 pt-6">
+      <div className="mx-auto w-full max-w-[1200px] px-3 sm:px-6 lg:px-8 pt-6 sm:pt-8">
         <div
-          className={`rounded-3xl border ${ui.border} ${ui.panel} backdrop-blur-xl shadow-xl overflow-hidden animate-fade-up`}
+          className={`rounded-3xl border ${ui.border} ${ui.panel} backdrop-blur-xl shadow-xl overflow-hidden animate-fade-up p-8 sm:p-12 lg:p-14`}
         >
           {/* TOP BAR */}
-          <div className="flex items-center justify-between p-5 lg:p-8">
+          <div className="flex items-center justify-between mb-12 sm:mb-16 lg:mb-20">
             <img
               src={darkMode ? "/signature.png" : "/signature-white.png"}
               alt="signature"
@@ -411,131 +411,129 @@ const Landing = () => {
           </div>
 
           {/* MAIN CONTENT */}
-          <div className="p-5 lg:p-8 pt-0 lg:pt-0">
-            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-8 items-end">
-              {/* LEFT SIDE: Intro Text & Custom Widgets */}
-              <div className="flex flex-col w-full h-full justify-center">
-                <div className="flex items-center gap-3 mb-2">
-                  <p className={`text-base sm:text-lg ${ui.subtext}`}>
-                    Hello, I&apos;m
-                  </p>
-                </div>
-
-                <div className="text-[10vw] sm:text-6xl lg:text-[4.5rem] font-bold tracking-tight leading-[1.05]">
-                  Raufun Nazin <br className="hidden lg:block" /> Srizon
-                </div>
-
-                {/* Unified Typography Line */}
-                <div
-                  className={`mt-4 text-[15px] sm:text-base font-medium ${ui.subtext} leading-relaxed max-w-lg`}
-                >
-                  Software Engineer <span className="opacity-40 mx-2">•</span>
-                  Full Stack <span className="opacity-40 mx-2">•</span>
-                  React & FastAPI <span className="opacity-40 mx-2">•</span>4
-                  YoE
-                </div>
+          <div className="flex flex-col gap-12 lg:gap-10 items-end">
+            {/* LEFT SIDE: Intro Text & Custom Widgets */}
+            <div className="flex flex-col w-full h-full justify-center">
+              <div className="flex items-center gap-3 mb-2">
+                <p className={`text-base sm:text-lg ${ui.subtext}`}>
+                  Hello, I&apos;m
+                </p>
               </div>
 
-              {/* RIGHT SIDE: Highlight Cards */}
-              <div className="w-full">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  {/* TILE 1: System Architect */}
+              <div className="text-[10vw] sm:text-6xl lg:text-[4.5rem] font-bold tracking-tight leading-[1.05]">
+                Raufun Nazin Srizon
+              </div>
+
+              {/* Unified Typography Line */}
+              <div
+                className={`mt-4 text-[15px] sm:text-base font-medium ${ui.subtext} leading-relaxed max-w-lg`}
+              >
+                Software Engineer <span className="opacity-40 mx-2">•</span>
+                Full Stack <span className="opacity-40 mx-2">•</span>
+                React & FastAPI <span className="opacity-40 mx-2">•</span>4
+                YoE
+              </div>
+            </div>
+
+            {/* RIGHT SIDE: Highlight Cards */}
+            <div className="w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                {/* TILE 1: System Architect */}
+                <div
+                  className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-rose-400/30 transition-colors`}
+                >
+                  <div className="glass-shine" />
                   <div
-                    className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-rose-400/30 transition-colors`}
+                    className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} bg-gradient-to-br from-rose-500/10 to-orange-500/10 flex items-center justify-center`}
                   >
-                    <div className="glass-shine" />
-                    <div
-                      className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} bg-gradient-to-br from-rose-500/10 to-orange-500/10 flex items-center justify-center`}
-                    >
-                      <FiPenTool className="text-rose-400 text-lg group-hover:scale-110 transition-transform" />
+                    <FiPenTool className="text-rose-400 text-lg group-hover:scale-110 transition-transform" />
+                  </div>
+                  <div className="relative z-10 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
+                      System Architect
                     </div>
-                    <div className="relative z-10 min-w-0">
-                      <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
-                        System Architect
-                      </div>
-                      <div className="text-[15px] font-semibold truncate mt-0.5">
-                        Scalable Foundations
-                      </div>
-                      <div
-                        className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
-                      >
-                        Designing robust B2B data models
-                      </div>
+                    <div className="text-[15px] font-semibold truncate mt-0.5">
+                      Scalable Foundations
+                    </div>
+                    <div
+                      className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
+                    >
+                      Designing robust B2B data models
                     </div>
                   </div>
+                </div>
 
-                  {/* TILE 2: Frontend Engineer */}
+                {/* TILE 2: Frontend Engineer */}
+                <div
+                  className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-cyan-500/30 transition-colors`}
+                >
+                  <div className="bg-mesh-pattern" />
                   <div
-                    className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-cyan-500/30 transition-colors`}
+                    className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-cyan-500/10" : "bg-cyan-500/5"} flex items-center justify-center`}
                   >
-                    <div className="bg-mesh-pattern" />
-                    <div
-                      className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-cyan-500/10" : "bg-cyan-500/5"} flex items-center justify-center`}
-                    >
-                      <FiLayout className="text-cyan-500 text-lg group-hover:scale-105 transition-transform" />
+                    <FiLayout className="text-cyan-500 text-lg group-hover:scale-105 transition-transform" />
+                  </div>
+                  <div className="relative z-10 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
+                      Frontend Engineer
                     </div>
-                    <div className="relative z-10 min-w-0">
-                      <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
-                        Frontend Engineer
-                      </div>
-                      <div className="text-[15px] font-semibold truncate mt-0.5">
-                        Interactive UI/UX
-                      </div>
-                      <div
-                        className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
-                      >
-                        Crafting pixel-perfect web apps
-                      </div>
+                    <div className="text-[15px] font-semibold truncate mt-0.5">
+                      Interactive UI/UX
+                    </div>
+                    <div
+                      className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
+                    >
+                      Crafting pixel-perfect web apps
                     </div>
                   </div>
+                </div>
 
-                  {/* TILE 3: Backend Engineer */}
+                {/* TILE 3: Backend Engineer */}
+                <div
+                  className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-violet-500/30 transition-colors`}
+                >
+                  <div className="data-stream-line" />
                   <div
-                    className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-violet-500/30 transition-colors`}
+                    className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-violet-500/10" : "bg-violet-500/5"} flex items-center justify-center`}
                   >
-                    <div className="data-stream-line" />
-                    <div
-                      className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-violet-500/10" : "bg-violet-500/5"} flex items-center justify-center`}
-                    >
-                      <FiDatabase className="text-violet-500 text-lg group-hover:-translate-y-0.5 transition-transform" />
+                    <FiDatabase className="text-violet-500 text-lg group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                  <div className="relative z-10 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
+                      Backend Engineer
                     </div>
-                    <div className="relative z-10 min-w-0">
-                      <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
-                        Backend Engineer
-                      </div>
-                      <div className="text-[15px] font-semibold truncate mt-0.5">
-                        Core Server Logic
-                      </div>
-                      <div
-                        className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
-                      >
-                        Writing fast, secure APIs
-                      </div>
+                    <div className="text-[15px] font-semibold truncate mt-0.5">
+                      Core Server Logic
+                    </div>
+                    <div
+                      className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
+                    >
+                      Writing fast, secure APIs
                     </div>
                   </div>
+                </div>
 
-                  {/* TILE 4: DevOps & Infra */}
+                {/* TILE 4: DevOps & Infra */}
+                <div
+                  className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-emerald-500/30 transition-colors`}
+                >
+                  <div className="bg-grid-pattern" />
                   <div
-                    className={`relative overflow-hidden rounded-2xl border ${ui.border} ${darkMode ? "bg-neutral-900/40" : "bg-white/40"} p-4 flex items-center gap-4 group hover:border-emerald-500/30 transition-colors`}
+                    className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-emerald-500/10" : "bg-emerald-500/5"} flex items-center justify-center`}
                   >
-                    <div className="bg-grid-pattern" />
-                    <div
-                      className={`relative z-10 shrink-0 h-12 w-12 rounded-xl border ${ui.border} ${darkMode ? "bg-emerald-500/10" : "bg-emerald-500/5"} flex items-center justify-center`}
-                    >
-                      <FiServer className="text-emerald-500 text-lg group-hover:animate-pulse" />
+                    <FiServer className="text-emerald-500 text-lg group-hover:animate-pulse" />
+                  </div>
+                  <div className="relative z-10 min-w-0">
+                    <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
+                      DevOps & Infra
                     </div>
-                    <div className="relative z-10 min-w-0">
-                      <div className="text-[10px] uppercase tracking-widest opacity-60 font-bold">
-                        DevOps & Infra
-                      </div>
-                      <div className="text-[15px] font-semibold truncate mt-0.5">
-                        Mass Deployment
-                      </div>
-                      <div
-                        className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
-                      >
-                        Managing 200+ production servers
-                      </div>
+                    <div className="text-[15px] font-semibold truncate mt-0.5">
+                      Mass Deployment
+                    </div>
+                    <div
+                      className={`text-[11px] ${ui.subtext} truncate mt-0.5`}
+                    >
+                      Managing 200+ production servers
                     </div>
                   </div>
                 </div>
