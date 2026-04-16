@@ -16,12 +16,15 @@ export default function TerminalContact({
   const [history, setHistory] = useState(initialHistory);
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
-  const endOfTerminalRef = useRef(null);
 
-  // Auto-scroll to bottom when history changes
+  // NEW: Ref for the scrollable container instead of the invisible bottom div
+  const scrollContainerRef = useRef(null);
+
+  // FIX: Scroll only the terminal container, not the whole browser window!
   useEffect(() => {
-    if (endOfTerminalRef.current) {
-      endOfTerminalRef.current.scrollIntoView({ behavior: "smooth" });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop =
+        scrollContainerRef.current.scrollHeight;
     }
   }, [history]);
 
@@ -84,7 +87,6 @@ export default function TerminalContact({
           : "Linux";
         break;
       case "history":
-        // Show typed history with line numbers
         output = newHistory
           .filter((h) => h.type === "input")
           .map((h, i) => `  ${i + 1}  ${h.text}`)
@@ -145,7 +147,6 @@ export default function TerminalContact({
     handleCommand(randomCmd);
   };
 
-  // FIX: This stops the hidden SnakeGame from stealing your keys!
   const handleKeyDown = (e) => {
     e.stopPropagation();
     if (e.nativeEvent) {
@@ -203,6 +204,7 @@ export default function TerminalContact({
 
         {/* Terminal Body */}
         <div
+          ref={scrollContainerRef} // <-- Attached the ref here!
           className="p-6 sm:p-8 lg:p-10 font-mono text-sm sm:text-base overflow-y-auto flex-1 cursor-text scroll-smooth"
           onClick={() => inputRef.current && inputRef.current.focus()}
         >
@@ -234,7 +236,7 @@ export default function TerminalContact({
                       <span className="w-24 opacity-50">EMAIL:</span>
                       <button
                         onClick={(e) => {
-                          e.stopPropagation(); // Prevents focusing the terminal input
+                          e.stopPropagation();
                           copyToClipboard(
                             "raufun.nazin13@gmail.com",
                             "contact-email",
@@ -282,16 +284,12 @@ export default function TerminalContact({
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown} // Apply the fix here
+                onKeyDown={handleKeyDown}
                 autoComplete="off"
                 spellCheck="false"
                 className="flex-1 bg-transparent outline-none border-none text-inherit font-mono w-full"
-                autoFocus
               />
             </div>
-
-            {/* Invisible element to anchor the auto-scroll */}
-            <div ref={endOfTerminalRef} />
           </div>
         </div>
 

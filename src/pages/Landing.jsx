@@ -674,7 +674,7 @@ const Landing = () => {
                 key={p.title}
                 className={`group relative w-full text-left rounded-3xl border ${ui.border} ${
                   darkMode ? "bg-[#111]" : "bg-[#fafafa]"
-                } overflow-hidden min-h-[500px] flex flex-col transition-all duration-500 shadow-sm hover:shadow-xl block`}
+                } overflow-hidden min-h-[500px] flex flex-col transition-all duration-500 shadow-sm hover:shadow-xl`}
               >
                 {/* Top Text Content */}
                 <div className="relative z-20 p-6 sm:p-8 flex flex-col pb-[240px]">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FiActivity, FiPlay, FiRotateCcw, FiTerminal } from "react-icons/fi";
 
 const funnyRunMessages = [
@@ -21,8 +21,17 @@ export default function CodeEditor({ project, darkMode, ui }) {
   const [code, setCode] = useState(initialCode);
   const [terminalMsg, setTerminalMsg] = useState("");
   const [showLimitWarning, setShowLimitWarning] = useState(false);
+  const textareaRef = useRef(null);
 
   const lines = code.split("\n");
+
+  // Auto-resize the textarea height so wrapped text isn't cut off on mobile
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [code]);
 
   const handleCodeChange = (e) => {
     const newCode = e.target.value;
@@ -87,7 +96,7 @@ export default function CodeEditor({ project, darkMode, ui }) {
       <div
         className={`flex items-center justify-between px-2 h-10 border-b ${ui.border} ${
           darkMode ? "bg-[#161616]" : "bg-[#ececec]"
-        } font-mono text-[11px]`}
+        } font-mono text-[11px] shrink-0`}
       >
         <div className="flex items-center h-full">
           <div
@@ -130,12 +139,11 @@ export default function CodeEditor({ project, darkMode, ui }) {
       <div className="flex-1 flex flex-col font-mono text-[13px] sm:text-sm relative overflow-hidden">
         {/* Editor Area (Line Numbers + Textarea) */}
         <div className="flex flex-1 p-4 overflow-y-auto">
-          {/* Line Numbers */}
+          {/* Line Numbers - Hidden on mobile to prevent misalignment when text wraps */}
           <div
-            className={`flex flex-col text-right select-none pr-4 mr-2 border-r border-black/10 dark:border-white/10 ${
+            className={`hidden sm:flex flex-col text-right select-none pr-4 mr-2 border-r border-black/10 dark:border-white/10 ${
               darkMode ? "text-neutral-600" : "text-neutral-400"
             }`}
-            // Using a strict line height to keep numbers and text aligned perfectly
             style={{ lineHeight: "1.6rem" }}
           >
             {lines.map((_, i) => (
@@ -145,16 +153,17 @@ export default function CodeEditor({ project, darkMode, ui }) {
 
           {/* Interactive Text Area */}
           <textarea
+            ref={textareaRef}
             value={code}
             onChange={handleCodeChange}
             onKeyDown={handleKeyDown}
             spellCheck="false"
-            className={`flex-1 bg-transparent outline-none resize-none whitespace-pre overflow-x-auto ${
+            className={`flex-1 bg-transparent outline-none resize-none whitespace-pre-wrap sm:whitespace-pre overflow-hidden sm:overflow-x-auto ${
               darkMode ? "text-neutral-300" : "text-neutral-700"
             }`}
             style={{
               lineHeight: "1.6rem",
-              height: `${Math.max(10, lines.length) * 1.6}rem`,
+              minHeight: "16rem", // Ensures it doesn't collapse too small
             }}
           />
         </div>
@@ -166,7 +175,7 @@ export default function CodeEditor({ project, darkMode, ui }) {
               darkMode
                 ? "bg-[#111] text-emerald-400"
                 : "bg-neutral-100 text-emerald-600"
-            } font-mono text-[11px] flex items-center gap-2 animate-fade-up`}
+            } font-mono text-[11px] flex items-center gap-2 animate-fade-up shrink-0`}
           >
             <FiTerminal className="shrink-0" />
             <span className="truncate">{terminalMsg}</span>
