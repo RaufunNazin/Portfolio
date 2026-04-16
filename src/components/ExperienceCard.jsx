@@ -1,128 +1,89 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 
 const ExperienceCard = ({ exp, darkMode }) => {
-  const [flipped, setFlipped] = useState(false);
-
-  const ui = useMemo(() => {
-    const text = darkMode ? "text-neutral-100" : "text-neutral-900";
-    const sub = darkMode ? "text-neutral-300" : "text-neutral-600";
-    const border = darkMode ? "border-white/10" : "border-black/10";
-    const frontBg = darkMode ? "bg-neutral-900/80" : "bg-white/80";
-    const backBg = darkMode ? "bg-neutral-950" : "bg-[#fbfbf8]";
-    const chip = darkMode
-      ? "bg-white/8 text-neutral-100"
-      : "bg-black/5 text-neutral-900";
-    return { text, sub, border, frontBg, backBg, chip };
-  }, [darkMode]);
-
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") setFlipped(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  // Clean, premium UI mapping without unnecessary state or clunky flips
+  const border = darkMode ? "border-white/10" : "border-black/10";
+  const bg = darkMode
+    ? "bg-[#111] hover:bg-[#161616]"
+    : "bg-[#fafafa] hover:bg-white";
+  const text = darkMode ? "text-white" : "text-black";
+  const subtext = darkMode ? "text-neutral-400" : "text-neutral-500";
 
   return (
-    <button
-      type="button"
-      className={`card-sweep cursor-pointer min-w-full h-[320px] md:h-[420px] relative text-left focus:outline-none rounded-3xl ${darkMode ? "bg-white/6" : "bg-black/5"} border ${ui.border} shadow-lg p-0 perspective`}
-      onClick={() => setFlipped((v) => !v)}
-      aria-label={`Experience card: ${exp.company}`}
-      title="Click to flip"
+    <div
+      className={`group relative flex flex-col h-full min-h-[420px] p-6 sm:p-8 rounded-3xl border ${border} ${bg} transition-all duration-500 shadow-sm hover:shadow-xl cursor-default overflow-hidden`}
     >
-      <div className={`flip-card-inner ${flipped ? "flipped" : ""}`}>
-        {/* FRONT */}
-        <div
-          className={`flip-card-front rounded-3xl border ${ui.border} ${ui.frontBg} backdrop-blur-xl shadow-lg p-5 flex flex-col justify-between overflow-hidden`}
-        >
-          <div className="flex items-center justify-between gap-3">
-            <img
-              src={exp.image}
-              alt={exp.company}
-              className={`w-auto ${exp.company === "Amicsoft" ? "h-7" : "h-8"} opacity-95`}
-              loading="lazy"
-            />
+      {/* Subtle hover gradient accent (matches your brand colors) */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="flex items-center gap-2 shrink-0 animate-pulse">
-              {exp.isCurrent && (
-                <span className="px-2 py-2 rounded-full text-[11px] font-semibold bg-emerald-500 text-white"></span>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <div
-              className={`${ui.text} text-[22px] md:text-[26px] font-semibold leading-tight`}
-            >
-              {exp.title}
-            </div>
-            <div className={`${ui.sub} text-[14px] md:text-[16px] mt-1`}>
-              {exp.company}
-            </div>
-          </div>
-
-          <div className="mt-4 space-y-1">
-            <div className={`${ui.sub} text-[13px] md:text-[14px]`}>
-              {exp.duration}
-            </div>
-            <div className={`${ui.sub} text-[13px] md:text-[14px]`}>
-              {exp.type}
-            </div>
-          </div>
-
-          <div
-            className={`mt-4 text-[13px] md:text-[14px] ${ui.sub} leading-relaxed`}
-          >
-            {exp.summary}
-          </div>
-
-          <div className="mt-5">
-            <div className="h-[2px] w-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 rounded-full opacity-80" />
-            <div className={`mt-2 text-[11px] ${ui.sub}`}>
-              Click for details
-            </div>
-          </div>
+      {/* Top Row: Logo & Status */}
+      <div className="flex justify-between items-center mb-8">
+        <div className={`h-8 sm:h-10 flex items-center`}>
+          <img
+            src={exp.image}
+            alt={exp.company}
+            className={`max-h-full w-auto object-contain transition-all duration-500 ${
+              darkMode
+                ? "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+                : "opacity-90"
+            }`}
+            loading="lazy"
+          />
         </div>
 
-        {/* BACK */}
-        <div
-          className={`flex flex-col justify-between flip-card-back rounded-3xl border ${ui.border} ${ui.backBg} shadow-lg p-5 overflow-y-auto`}
+        {exp.isCurrent && (
+          <div
+            className={`shrink-0 flex items-center gap-1.5 px-2.5 py-1 rounded-full border ${border} ${darkMode ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" : "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"}`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+            <span className="text-[9px] uppercase tracking-widest font-bold">
+              Present
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Role & Company Info */}
+      <div>
+        <h3
+          className={`text-xl font-bold tracking-tight leading-tight ${text} mb-1 group-hover:text-cyan-500 transition-colors`}
         >
-          <div>
-            <div className={`${ui.text} font-semibold text-base`}>
-              What I did
-            </div>
-            <ul
-              className={`mt-2 list-disc pl-5 space-y-1 text-[13px] md:text-[14px] ${ui.sub}`}
-            >
-              {exp.details.map((point, idx) => (
-                <li key={idx}>{point}</li>
-              ))}
-            </ul>
+          {exp.title}
+        </h3>
+        <div
+          className={`text-sm font-medium ${darkMode ? "text-neutral-300" : "text-neutral-700"} mb-5`}
+        >
+          {exp.company}
+        </div>
 
-            <div className="mt-5">
-              <div className={`${ui.text} font-semibold text-base`}>Tech</div>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {exp.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className={`text-[12px] px-2.5 py-1 rounded-full border ${ui.border} ${ui.chip}`}
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 flex items-center justify-between">
-            <div className={`text-[11px] ${ui.sub}`}>Press Esc to close</div>
-            <div className={`text-[11px] ${ui.sub}`}>Click to flip back</div>
-          </div>
+        <div
+          className={`flex flex-col gap-1.5 text-[10px] font-mono uppercase tracking-widest ${subtext} mb-8`}
+        >
+          <span>{exp.duration}</span>
+          <span>{exp.type}</span>
         </div>
       </div>
-    </button>
+
+      {/* Details / Impact (Replacing tech stacks and flip gimmicks) */}
+      <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/5">
+        <ul className="space-y-3">
+          {exp.details.map((point, idx) => (
+            <li key={idx} className="flex items-start gap-3">
+              <span
+                className={`mt-0.5 text-[12px] opacity-60 ${darkMode ? "text-cyan-400" : "text-cyan-600"}`}
+              >
+                ▹
+              </span>
+              <span
+                className={`text-xs sm:text-[13px] leading-relaxed ${subtext}`}
+              >
+                {point}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
